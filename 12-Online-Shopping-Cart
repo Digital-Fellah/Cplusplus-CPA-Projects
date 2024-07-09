@@ -1,0 +1,79 @@
+// Online Shopping Cart Program
+// This program allows users to manage a shopping cart, add items, and calculate the total cost.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Define a struct to represent items in the shopping cart
+struct Item {
+    string name;
+    double price;
+    int quantity;
+};
+
+// Function to add an item to the shopping cart
+void addItem(vector<Item>& cart, const string& itemName, double itemPrice, int quantity) {
+    // Create a new item and add it to the cart
+    Item newItem;
+    newItem.name = itemName;
+    newItem.price = itemPrice;
+    newItem.quantity = quantity;
+    cart.push_back(newItem);
+
+    // Output confirmation message
+    cout << itemName << " added to cart." << endl;
+}
+
+// Function to display the contents of the shopping cart
+void displayCart(const vector<Item>& cart) {
+    // Check if the cart is empty
+    if (cart.empty()) {
+        cout << "Your shopping cart is empty." << endl;
+    } else {
+        cout << "Shopping Cart:" << endl;
+        double totalCost = 0.0;
+        // Loop through each item in the cart and display its details
+        for (const auto& item : cart) {
+            cout << item.name << " - $" << item.price << " x " << item.quantity << endl;
+            totalCost += item.price * item.quantity;
+        }
+        cout << "Total: $" << totalCost << endl;
+    }
+}
+
+int main() {
+    vector<Item> shoppingCart;  // Initialize an empty shopping cart
+
+    // Add some items to the cart
+    addItem(shoppingCart, "Laptop", 999.99, 1);
+    addItem(shoppingCart, "Headphones", 149.99, 2);
+
+    // Display the shopping cart
+    displayCart(shoppingCart);
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Introduction: This program simulates an online shopping cart where users can add items and view their total cost.
+Struct Definition: Defines a struct Item to store details of each item in the shopping cart.
+addItem Function: Adds a new item with specified name, price, and quantity to the shopping cart vector.
+displayCart Function: Displays the contents of the shopping cart, including item names, prices, quantities, and total cost.
+Main Function: Initializes an empty shopping cart, adds sample items (laptop and headphones), and displays the contents of the cart.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Functions
+Declaring and invoking functions
+Side effects
+Different methods of passing parameters
+"""
