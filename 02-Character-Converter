@@ -1,0 +1,55 @@
+// Character Converter
+// This program converts a character between uppercase and lowercase.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    char inputChar, convertedChar;  // Define variables to store input and converted characters
+
+    // Prompt the user to enter a character
+    cout << "Enter a character: ";
+    cin >> inputChar;
+
+    // Check if the input character is uppercase
+    if (inputChar >= 'A' && inputChar <= 'Z') {
+        // Convert uppercase to lowercase
+        convertedChar = inputChar + 32;
+        cout << "Converted to lowercase: " << convertedChar << endl;
+    }
+    // Check if the input character is lowercase
+    else if (inputChar >= 'a' && inputChar <= 'z') {
+        // Convert lowercase to uppercase
+        convertedChar = inputChar - 32;
+        cout << "Converted to uppercase: " << convertedChar << endl;
+    }
+    else {
+        // If the input is not a valid alphabet character
+        cout << "Invalid input. Please enter an alphabet character." << endl;
+    }
+
+    return 0;
+}
+
+
+
+"""
+EXPLANATION OF THE CODE
+
+Prompt the user to enter a character.
+Read the character from the standard input.
+Check if the entered character is uppercase or lowercase.
+Convert the character to its opposite case using ASCII value manipulation.
+Display the converted character based on the user's input.
+Handle cases where the input is not a valid alphabet character.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Characters: values, literals, operators (comparison operators).
+Basic input/output operations (cout, cin).
+Conditional statements (if-else).
+Variables (char type).
+"""
