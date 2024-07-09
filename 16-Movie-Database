@@ -1,0 +1,162 @@
+// Movie Database Program
+// This program allows users to manage a movie database, including adding movies, adding reviews, and searching for movies.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Structure to store information about a movie
+struct Movie {
+    string title;
+    string director;
+    int releaseYear;
+    double rating;
+    vector<string> genres;
+};
+
+// Function prototypes
+void addMovie(vector<Movie> &database);  // Function to add a new movie to the database
+void addReview(vector<Movie> &database, string title, double rating);  // Function to add a review to a movie
+void searchMovieByDirector(const vector<Movie> &database, string director);  // Function to search movies by director
+
+int main() {
+    vector<Movie> movieDatabase;  // Vector to store all movies in the database
+
+    // Adding initial movies to the database (for demonstration purposes)
+    movieDatabase.push_back({"Inception", "Christopher Nolan", 2010, 8.8, {"Action", "Sci-Fi", "Thriller"}});
+    movieDatabase.push_back({"The Shawshank Redemption", "Frank Darabont", 1994, 9.3, {"Drama"}});
+    movieDatabase.push_back({"The Dark Knight", "Christopher Nolan", 2008, 9.0, {"Action", "Crime", "Drama"}});
+
+    // Menu for user interaction
+    int choice;
+    do {
+        cout << "\n=== Movie Database Menu ===\n";
+        cout << "1. Add a new movie\n";
+        cout << "2. Add a review to a movie\n";
+        cout << "3. Search movies by director\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addMovie(movieDatabase);
+                break;
+            case 2: {
+                string title;
+                double rating;
+                cout << "Enter the title of the movie: ";
+                cin.ignore();  // Clear input buffer
+                getline(cin, title);
+                cout << "Enter your rating for '" << title << "' (0.0 - 10.0): ";
+                cin >> rating;
+                addReview(movieDatabase, title, rating);
+                break;
+            }
+            case 3: {
+                string director;
+                cout << "Enter the name of the director: ";
+                cin.ignore();  // Clear input buffer
+                getline(cin, director);
+                searchMovieByDirector(movieDatabase, director);
+                break;
+            }
+            case 4:
+                cout << "Exiting the program...\n";
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+                break;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
+// Function to add a new movie to the database
+void addMovie(vector<Movie> &database) {
+    Movie newMovie;
+    cout << "\nEnter details of the new movie:\n";
+    cout << "Title: ";
+    cin.ignore();  // Clear input buffer
+    getline(cin, newMovie.title);
+    cout << "Director: ";
+    getline(cin, newMovie.director);
+    cout << "Release Year: ";
+    cin >> newMovie.releaseYear;
+    cout << "Rating: ";
+    cin >> newMovie.rating;
+    cout << "Genres (enter each genre followed by Enter, type 'done' to finish):\n";
+    string genre;
+    do {
+        cin.ignore();  // Clear input buffer
+        getline(cin, genre);
+        if (genre != "done") {
+            newMovie.genres.push_back(genre);
+        }
+    } while (genre != "done");
+
+    database.push_back(newMovie);
+    cout << "Movie added successfully!\n";
+}
+
+// Function to add a review to a movie
+void addReview(vector<Movie> &database, string title, double rating) {
+    bool found = false;
+    for (auto &movie : database) {
+        if (movie.title == title) {
+            movie.rating = (movie.rating + rating) / 2.0;  // Update average rating
+            cout << "Review added successfully!\n";
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Movie not found in the database.\n";
+    }
+}
+
+// Function to search movies by director
+void searchMovieByDirector(const vector<Movie> &database, string director) {
+    bool found = false;
+    for (const auto &movie : database) {
+        if (movie.director == director) {
+            cout << "Title: " << movie.title << "\n";
+            cout << "Release Year: " << movie.releaseYear << "\n";
+            cout << "Rating: " << movie.rating << "\n";
+            cout << "Genres: ";
+            for (const auto &genre : movie.genres) {
+                cout << genre << ", ";
+            }
+            cout << "\n\n";
+            found = true;
+        }
+    }
+    if (!found) {
+        cout << "No movies found directed by " << director << ".\n";
+    }
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program allows users to manage a movie database.
+Users can add new movies with details like title, director, release year, rating, and genres.
+Users can add reviews to existing movies.
+Users can search for movies by director.
+The program uses a menu-driven approach for user interaction.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Functions
+Declaring and invoking functions
+Side effects
+Different methods of passing parameters
+Overloaded functions
+"""
