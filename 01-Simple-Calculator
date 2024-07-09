@@ -1,0 +1,80 @@
+// Simple Calculator
+// This program allows the user to perform basic arithmetic operations.
+
+#include <iostream>  // Include the input/output stream library
+
+using namespace std;  // Use the standard namespace for cout and cin
+
+int main() {
+    // Declare variables to store user inputs and results
+    int num1, num2, result;
+    char op;  // Operator variable to store the arithmetic operation
+
+    // Display a welcome message and instructions
+    cout << "Welcome to Simple Calculator!" << endl;
+    cout << "Enter two numbers and an operator (+, -, *, /):" << endl;
+
+    // Prompt user to input the first number
+    cout << "Enter first number: ";
+    cin >> num1;  // Read the first number from the user
+
+    // Prompt user to input the operator
+    cout << "Enter operator (+, -, *, /): ";
+    cin >> op;  // Read the operator from the user
+
+    // Prompt user to input the second number
+    cout << "Enter second number: ";
+    cin >> num2;  // Read the second number from the user
+
+    // Perform arithmetic operation based on the operator entered
+    switch (op) {
+        case '+':  // Addition
+            result = num1 + num2;
+            break;
+        case '-':  // Subtraction
+            result = num1 - num2;
+            break;
+        case '*':  // Multiplication
+            result = num1 * num2;
+            break;
+        case '/':  // Division
+            if (num2 != 0) {  // Check for division by zero
+                result = num1 / num2;
+            } else {
+                cout << "Error: Division by zero is not allowed." << endl;
+                return 1;  // Exit program with error status
+            }
+            break;
+        default:
+            cout << "Invalid operator entered." << endl;
+            return 1;  // Exit program with error status
+    }
+
+    // Display the result of the arithmetic operation
+    cout << "Result: " << num1 << " " << op << " " << num2 << " = " << result << endl;
+
+    return 0;  // Exit program successfully
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Include iostream: This line includes the standard input/output stream library, allowing the program to interact with the user through the console.
+Using namespace std: This directive allows the use of standard C++ libraries such as cout and cin without prefixing them with std::.
+Main function: The entry point of the program where execution begins.
+Variable Declaration: Declares variables num1, num2 for operands, op for operator, and result to store the outcome of arithmetic operations.
+User Interaction: Displays welcome message and prompts user to enter two numbers and an operator.
+Input Handling: Reads user inputs (num1, op, num2) using cin.
+Arithmetic Operations: Uses a switch statement to perform addition, subtraction, multiplication, and division based on the operator entered.
+Output: Displays the calculated result of the arithmetic operation.
+"""
+
+
+""""
+NOTIONS COVERED
+
+Variables (integers)
+Operators (+, -, *, /)
+Basic input/output operations (cin, cout)
+"""
