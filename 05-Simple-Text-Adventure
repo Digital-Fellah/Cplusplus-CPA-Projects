@@ -1,0 +1,81 @@
+// Simple Text Adventure Game
+// This program simulates a basic text-based adventure game where the player makes choices to navigate through different scenarios.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    // Variable to store player's name
+    string playerName;
+
+    // Introduction
+    cout << "Welcome to the Simple Text Adventure Game!" << endl;
+    cout << "----------------------------------------" << endl;
+    
+    // Getting player's name
+    cout << "Enter your name: ";
+    getline(cin, playerName); // Using getline to handle spaces in the name
+
+    // Starting the adventure
+    cout << endl;
+    cout << "Hello, " << playerName << "! You find yourself in a mysterious forest." << endl;
+    cout << "You must navigate through the forest and find the hidden treasure." << endl;
+    cout << "Be careful, as there are dangers lurking!" << endl;
+
+    // Game scenarios
+    cout << endl;
+    cout << "You come across a fork in the road. Which path will you take?" << endl;
+    cout << "1. Go left" << endl;
+    cout << "2. Go right" << endl;
+
+    int choice;
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
+
+    // Evaluate the player's choice
+    switch(choice) {
+        case 1:
+            cout << endl;
+            cout << "You chose to go left." << endl;
+            cout << "You encounter a friendly elf who gives you a map." << endl;
+            cout << "The map leads you closer to the treasure!" << endl;
+            break;
+        case 2:
+            cout << endl;
+            cout << "You chose to go right." << endl;
+            cout << "You stumble upon a pack of hungry wolves!" << endl;
+            cout << "You narrowly escape with your life, but without any treasure." << endl;
+            break;
+        default:
+            cout << endl;
+            cout << "Invalid choice. You stand still and ponder your next move." << endl;
+    }
+
+    // End of game
+    cout << endl;
+    cout << "GAME OVER. Thanks for playing, " << playerName << "!" << endl;
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by greeting the player and asking for their name.
+It presents the player with a scenario in a forest and offers a choice between two paths.
+Depending on the player's choice, different outcomes are displayed using a switch statement.
+Finally, the game ends with a message thanking the player for playing.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Variables (string for playerName, int for choice)
+Basic input/output operations (cout, cin)
+Conditional statements (switch-case)
+String manipulation (getline)
+"""
