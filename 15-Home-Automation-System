@@ -1,0 +1,72 @@
+/*
+  Home Automation System Simulation
+  
+  This program simulates a basic home automation system where users can control
+  lights, temperature, and security settings.
+*/
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function prototypes
+void controlLights(bool turnOn);
+void setTemperature(int desiredTemp);
+void activateSecurity(bool enableSecurity = true);
+
+int main() {
+    // Simulate turning on the lights
+    controlLights(true);
+
+    // Set desired temperature to 22 degrees Celsius
+    setTemperature(22);
+
+    // Activate security system with default settings
+    activateSecurity();
+
+    return 0;
+}
+
+// Function to control lights
+void controlLights(bool turnOn) {
+    if (turnOn) {
+        cout << "Lights turned on." << endl;
+    } else {
+        cout << "Lights turned off." << endl;
+    }
+}
+
+// Function to set temperature
+void setTemperature(int desiredTemp) {
+    cout << "Temperature set to " << desiredTemp << " degrees Celsius." << endl;
+}
+
+// Function to activate security system
+void activateSecurity(bool enableSecurity) {
+    if (enableSecurity) {
+        cout << "Security system activated." << endl;
+    } else {
+        cout << "Security system deactivated." << endl;
+    }
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+controlLights(bool turnOn): Controls whether the lights are turned on or off based on the turnOn parameter.
+setTemperature(int desiredTemp): Sets the desired temperature to the specified desiredTemp value in degrees Celsius.
+activateSecurity(bool enableSecurity = true): Activates or deactivates the security system based on the enableSecurity parameter. If no parameter is provided, it defaults to true.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Functions
+Declaring and invoking functions
+Side effects
+Different methods of passing parameters
+Default parameters
+"""
