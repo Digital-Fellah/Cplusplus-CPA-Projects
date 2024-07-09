@@ -1,0 +1,80 @@
+// Music Playlist Manager
+// This program allows users to manage a music playlist by adding songs, creating playlists,
+// shuffling songs, and displaying playlists.
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm> // For shuffle function
+
+using namespace std;
+
+// Function prototypes
+void addSong(vector<string>& playlist, const string& song);
+void createPlaylist(const vector<string>& playlist);
+void shufflePlaylist(vector<string>& playlist);
+void displayPlaylist(const vector<string>& playlist);
+
+int main() {
+    vector<string> playlist; // Vector to store playlist songs
+
+    // Adding songs to the playlist
+    addSong(playlist, "Song 1");
+    addSong(playlist, "Song 2");
+    addSong(playlist, "Song 3");
+
+    // Creating and displaying the playlist
+    createPlaylist(playlist);
+    displayPlaylist(playlist);
+
+    // Shuffling the playlist
+    shufflePlaylist(playlist);
+    displayPlaylist(playlist);
+
+    return 0;
+}
+
+// Function to add a song to the playlist
+void addSong(vector<string>& playlist, const string& song) {
+    playlist.push_back(song);
+}
+
+// Function to create a playlist (just displays the playlist)
+void createPlaylist(const vector<string>& playlist) {
+    cout << "Playlist created with " << playlist.size() << " songs:" << endl;
+}
+
+// Function to shuffle the playlist
+void shufflePlaylist(vector<string>& playlist) {
+    random_shuffle(playlist.begin(), playlist.end()); // Using random_shuffle from algorithm library
+    cout << "Playlist shuffled!" << endl;
+}
+
+// Function to display the playlist
+void displayPlaylist(const vector<string>& playlist) {
+    for (const auto& song : playlist) {
+        cout << "- " << song << endl;
+    }
+    cout << endl;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by including necessary libraries (iostream, vector, string, algorithm).
+A vector<string> named playlist is used to store songs.
+Functions are declared and defined for adding a song (addSong), creating a playlist (createPlaylist), shuffling the playlist (shufflePlaylist), and displaying the playlist (displayPlaylist).
+In main(), songs are added to the playlist using addSong.
+The playlist is then created and displayed using createPlaylist and displayPlaylist.
+The playlist is shuffled using shufflePlaylist and displayed again using displayPlaylist.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Functions
+Declaring and invoking functions
+Side effects
+"""
