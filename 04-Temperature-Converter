@@ -1,0 +1,50 @@
+// Temperature Converter
+// This program converts temperatures between Celsius and Fahrenheit.
+
+#include <iostream>  // Include the standard input/output stream library
+
+using namespace std;
+
+int main() {
+    // Declare variables to store temperature values
+    double celsius, fahrenheit;
+
+    // Display instructions to the user
+    cout << "Temperature Converter" << endl;
+    cout << "=====================" << endl;
+    cout << "Enter the temperature in Celsius: ";
+    
+    // Receive user input for temperature in Celsius
+    cin >> celsius;
+
+    // Convert Celsius to Fahrenheit using the conversion formula
+    fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
+
+    // Display the converted temperature in Fahrenheit
+    cout << "Temperature in Fahrenheit: " << fahrenheit << endl;
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Include Library: The #include <iostream> statement allows us to use input/output operations.
+Namespace: using namespace std; enables the use of standard symbols (like cout and cin) without specifying the namespace.
+Main Function: int main() { ... } is where program execution begins.
+Variables: double celsius, fahrenheit; declare variables to store temperatures.
+User Input: cout << "Enter the temperature in Celsius: "; prompts the user to enter a temperature.
+Input Reception: cin >> celsius; accepts the user's input and stores it in the celsius variable.
+Temperature Conversion: fahrenheit = (celsius * 9.0 / 5.0) + 32.0; converts Celsius to Fahrenheit using the conversion formula.
+Output: cout << "Temperature in Fahrenheit: " << fahrenheit << endl; displays the converted temperature.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Variables (double for storing temperature values)
+Arithmetic operators (*, /, +)
+Basic input/output operations (cout, cin)
+"""
