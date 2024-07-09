@@ -1,0 +1,75 @@
+// Currency Converter Program
+// This program allows the user to convert between different currencies using user input.
+
+#include <iostream>
+
+int main() {
+    // Initialize variables for currency conversion rates
+    double usd_to_eur = 0.85;
+    double usd_to_gbp = 0.76;
+    double usd_to_jpy = 110.24;
+
+    // Variables for user input and choice
+    double amount;
+    int choice;
+
+    // Display menu and get user's choice
+    do {
+        std::cout << "Currency Converter Menu:\n";
+        std::cout << "1. USD to EUR\n";
+        std::cout << "2. USD to GBP\n";
+        std::cout << "3. USD to JPY\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Enter your choice (1-4): ";
+        std::cin >> choice;
+
+        // Perform conversion based on user's choice
+        switch(choice) {
+            case 1:
+                std::cout << "Enter USD amount: $";
+                std::cin >> amount;
+                std::cout << amount << " USD = " << amount * usd_to_eur << " EUR\n";
+                break;
+            case 2:
+                std::cout << "Enter USD amount: $";
+                std::cin >> amount;
+                std::cout << amount << " USD = " << amount * usd_to_gbp << " GBP\n";
+                break;
+            case 3:
+                std::cout << "Enter USD amount: $";
+                std::cin >> amount;
+                std::cout << amount << " USD = " << amount * usd_to_jpy << " JPY\n";
+                break;
+            case 4:
+                std::cout << "Exiting the program...\n";
+                break;
+            default:
+                std::cout << "Invalid choice. Please enter a number from 1 to 4.\n";
+        }
+
+        // Loop until the user chooses to exit
+    } while(choice != 4);
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Initialized conversion rates for USD to EUR, GBP, and JPY.
+Displayed a menu with options for currency conversion.
+Used a do-while loop to repeatedly prompt the user for input until they choose to exit.
+Utilized a switch statement to perform currency conversions based on the user's choice.
+Included error handling for invalid menu choices.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Loops: Implemented a do-while loop to handle repeated user interaction until termination.
+Flow Control: Used switch-case to direct program flow based on user input.
+Floating Point Types: Utilized double variables for storing currency conversion rates and amounts.
+Literals: Displayed literal text prompts and menu options.
+"""
