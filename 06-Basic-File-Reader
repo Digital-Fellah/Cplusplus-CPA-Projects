@@ -1,0 +1,56 @@
+// Simple File Reader
+// This program reads and displays the contents of a text file.
+
+#include <iostream>
+#include <fstream>  // Required for file stream operations
+
+int main() {
+    // Step 1: Declare variables
+    std::string filename;  // Variable to store the filename
+    std::string line;      // Variable to store each line of text from the file
+
+    // Step 2: Ask user for filename
+    std::cout << "Enter the name of the file to read: ";
+    std::cin >> filename;
+
+    // Step 3: Create an input file stream object and open the file
+    std::ifstream file(filename);  // Create file stream object and open file
+
+    // Step 4: Check if file opened successfully
+    if (!file.is_open()) {
+        std::cerr << "Error opening file " << filename << std::endl;
+        return 1;  // Return error code 1
+    }
+
+    // Step 5: Read and display each line from the file
+    std::cout << "Contents of the file " << filename << ":" << std::endl;
+    while (std::getline(file, line)) {  // Read each line from the file
+        std::cout << line << std::endl;  // Output each line to the console
+    }
+
+    // Step 6: Close the file
+    file.close();
+
+    return 0;  // Return 0 to indicate successful execution
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Step 1: Declare necessary variables (filename for storing the file name, line for storing each line of text).
+Step 2: Prompt the user to enter the name of the file to be read.
+Step 3: Create an ifstream (input file stream) object named file and open the specified file (filename).
+Step 4: Check if the file opened successfully. If not, print an error message and exit the program.
+Step 5: Read each line from the file using std::getline() and output it to the console until the end of the file (EOF).
+Step 6: Close the file stream using file.close() to release associated resources.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Dealing with streams (std::ifstream for reading files).
+Basic input/output operations (std::cin, std::cout).
+Error handling (checking if the file opened successfully).
+"""
