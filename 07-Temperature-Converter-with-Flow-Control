@@ -1,0 +1,74 @@
+// Temperature Converter Program
+// Converts temperatures between Celsius and Fahrenheit based on user input
+
+#include <iostream>  // Include the input-output stream library
+
+int main() {
+    // Declare variables to store the temperature and user's choice
+    double temperature, convertedTemperature;
+    char choice;
+
+    // Display options to the user
+    std::cout << "Welcome to the Temperature Converter!" << std::endl;
+    std::cout << "Enter 'C' to convert Celsius to Fahrenheit." << std::endl;
+    std::cout << "Enter 'F' to convert Fahrenheit to Celsius." << std::endl;
+    std::cin >> choice;  // Get the user's choice
+
+    // Check if the user chose to convert from Celsius to Fahrenheit
+    if (choice == 'C' || choice == 'c') {
+        // Ask the user to input the temperature in Celsius
+        std::cout << "Enter temperature in Celsius: ";
+        std::cin >> temperature;  // Get the Celsius temperature from the user
+
+        // Convert Celsius to Fahrenheit using the formula
+        convertedTemperature = (temperature * 9/5) + 32;
+
+        // Display the result to the user
+        std::cout << "Temperature in Fahrenheit: " << convertedTemperature << std::endl;
+    }
+    // Check if the user chose to convert from Fahrenheit to Celsius
+    else if (choice == 'F' || choice == 'f') {
+        // Ask the user to input the temperature in Fahrenheit
+        std::cout << "Enter temperature in Fahrenheit: ";
+        std::cin >> temperature;  // Get the Fahrenheit temperature from the user
+
+        // Convert Fahrenheit to Celsius using the formula
+        convertedTemperature = (temperature - 32) * 5/9;
+
+        // Display the result to the user
+        std::cout << "Temperature in Celsius: " << convertedTemperature << std::endl;
+    }
+    // If the user entered an invalid choice
+    else {
+        std::cout << "Invalid choice! Please run the program again and enter 'C' or 'F'." << std::endl;
+    }
+
+    return 0;  // End of the program
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Include necessary library for input and output operations.
+Declare variables for storing temperature values and the user's choice.
+Display a welcome message and instructions for the user.
+Use std::cin to get the user's choice of conversion.
+Use if statements to check the user's choice and perform the corresponding temperature conversion:
+For Celsius to Fahrenheit: (temperature * 9/5) + 32
+For Fahrenheit to Celsius: (temperature - 32) * 5/9
+Display the converted temperature to the user.
+If the user enters an invalid choice, display an error message.
+End the program.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Flow control using if and else if statements.
+Floating point types for storing and calculating temperature values.
+Literal values for conversion formulas and user inputs.
+Input and output operations using std::cin and std::cout.
+Basic arithmetic operations for temperature conversion formulas.
+"""
