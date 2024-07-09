@@ -1,0 +1,83 @@
+// Simple Calculator with Bitwise Operators
+// This program implements a basic calculator that allows users to perform arithmetic operations
+// and optionally perform bitwise operations on integers.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Variable declarations
+    int num1, num2, result;
+    char op;
+    bool bitwiseMode = false; // Flag to indicate if bitwise operations are enabled
+
+    // Prompt user for input
+    cout << "Enter first number: ";
+    cin >> num1;
+
+    cout << "Enter second number: ";
+    cin >> num2;
+
+    // Prompt user for operation choice
+    cout << "Enter operation (+, -, *, /): ";
+    cin >> op;
+
+    // Perform arithmetic operations based on user input
+    switch (op) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            // Check for division by zero
+            if (num2 != 0)
+                result = num1 / num2;
+            else {
+                cout << "Error: Division by zero!" << endl;
+                return 1; // Exit program with error code 1
+            }
+            break;
+        default:
+            cout << "Error: Invalid operation!" << endl;
+            return 1; // Exit program with error code 1
+    }
+
+    // Output the result of arithmetic operation
+    cout << "Result: " << result << endl;
+
+    // Optional bitwise operations
+    if (bitwiseMode) {
+        cout << "Bitwise AND result: " << (num1 & num2) << endl;
+        cout << "Bitwise OR result: " << (num1 | num2) << endl;
+        cout << "Bitwise XOR result: " << (num1 ^ num2) << endl;
+    }
+
+    return 0; // Exit program successfully
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Variable Declarations: Initialize variables to store two numbers (num1, num2), the result of operations (result), and the operation type (op).
+Input: Prompt the user to enter two numbers and the desired arithmetic operation (+, -, *, /).
+Arithmetic Operation: Use a switch statement to perform the chosen arithmetic operation on num1 and num2. Handle division by zero scenario.
+Output: Display the result of the arithmetic operation.
+Bitwise Operations (Optional): If bitwiseMode is enabled, perform bitwise AND (&), OR (|), and XOR (^) operations on num1 and num2.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Arithmetic operators (+, -, *, /) for basic calculations.
+Bitwise operators (&, |, ^) for bitwise operations on integers.
+Flow control (switch statement) for selecting different operations based on user input.
+Boolean types (bool) for managing optional features (bitwise mode).
+Integer types (int) for storing numerical values.
+"""
