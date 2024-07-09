@@ -1,0 +1,67 @@
+// Guessing Game
+// This program generates a random number between 1 and 100. The user tries to guess the number,
+// and the program provides hints ("too high" or "too low") until the correct number is guessed.
+
+#include <iostream>
+#include <cstdlib>  // for rand() and srand() functions
+#include <ctime>    // for time() function to seed random number generator
+
+int main() {
+    // Initialize random seed based on current time
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    // Generate a random number between 1 and 100
+    int secretNumber = std::rand() % 100 + 1;
+
+    // Variables to store user input and number of attempts
+    int guess;
+    int attempts = 0;
+
+    // Explain the rules to the user
+    std::cout << "Welcome to the Guessing Game!" << std::endl;
+    std::cout << "Try to guess the number between 1 and 100." << std::endl;
+
+    // Main game loop
+    do {
+        // Prompt the user to enter a guess
+        std::cout << "Enter your guess: ";
+        std::cin >> guess;
+
+        // Increment the number of attempts
+        attempts++;
+
+        // Check if the guess is correct, too high, or too low
+        if (guess == secretNumber) {
+            std::cout << "Congratulations! You guessed the number in " << attempts << " attempts." << std::endl;
+        } else if (guess < secretNumber) {
+            std::cout << "Too low! Try again." << std::endl;
+        } else {
+            std::cout << "Too high! Try again." << std::endl;
+        }
+
+    } while (guess != secretNumber);
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program generates a random number between 1 and 100 using std::rand() % 100 + 1.
+It initializes a loop (do-while) where the user can input guesses until they correctly guess the number.
+Each guess is compared against the randomly generated secretNumber.
+If the guess matches secretNumber, a congratulatory message is displayed along with the number of attempts.
+If the guess is too low or too high, appropriate feedback is given to guide the user towards the correct number.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Logic operators (==, <).
+Flow control (do-while loop, if-else statements).
+Integer types (handling numerical inputs and comparisons).
+Basic input and output operations (std::cin, std::cout).
+"""
+
