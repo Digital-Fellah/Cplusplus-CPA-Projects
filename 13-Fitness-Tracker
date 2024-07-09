@@ -1,0 +1,93 @@
+// This program is a fitness tracker that allows users to input their daily exercise routines and dietary intake.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function to calculate calories burned based on exercise type and duration
+int calculateCaloriesBurned(string exerciseType, int duration) {
+    int caloriesPerMinute;
+
+    // Determine calories burned per minute based on exercise type
+    if (exerciseType == "running") {
+        caloriesPerMinute = 10;
+    } else if (exerciseType == "cycling") {
+        caloriesPerMinute = 8;
+    } else if (exerciseType == "swimming") {
+        caloriesPerMinute = 12;
+    } else {
+        caloriesPerMinute = 5; // Default value for unknown exercises
+    }
+
+    // Calculate total calories burned
+    int totalCalories = caloriesPerMinute * duration;
+    return totalCalories;
+}
+
+// Function to calculate total daily calories consumed
+int calculateCaloriesConsumed(int breakfastCalories, int lunchCalories, int dinnerCalories) {
+    int totalCalories = breakfastCalories + lunchCalories + dinnerCalories;
+    return totalCalories;
+}
+
+// Function to suggest a workout plan based on fitness level
+void suggestWorkoutPlan(string fitnessLevel) {
+    if (fitnessLevel == "beginner") {
+        cout << "Try 30 minutes of brisk walking every day.\n";
+    } else if (fitnessLevel == "intermediate") {
+        cout << "Do 45 minutes of cardio (running or cycling) every alternate day.\n";
+    } else if (fitnessLevel == "advanced") {
+        cout << "Combine strength training and cardio exercises for 1 hour daily.\n";
+    } else {
+        cout << "Please consult a fitness expert for personalized advice.\n";
+    }
+}
+
+int main() {
+    // Sample input values (can be replaced with user input)
+    string exerciseType = "running";
+    int exerciseDuration = 45;
+    int breakfastCalories = 300;
+    int lunchCalories = 500;
+    int dinnerCalories = 400;
+    string fitnessLevel = "intermediate";
+
+    // Calculate calories burned
+    int caloriesBurned = calculateCaloriesBurned(exerciseType, exerciseDuration);
+
+    // Calculate calories consumed
+    int caloriesConsumed = calculateCaloriesConsumed(breakfastCalories, lunchCalories, dinnerCalories);
+
+    // Display results
+    cout << "Calories burned from " << exerciseDuration << " minutes of " << exerciseType << ": " << caloriesBurned << " kcal\n";
+    cout << "Total calories consumed today: " << caloriesConsumed << " kcal\n";
+
+    // Suggest workout plan based on fitness level
+    suggestWorkoutPlan(fitnessLevel);
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by including necessary libraries (iostream and string).
+It defines functions for calculating calories burned (calculateCaloriesBurned) and calories consumed (calculateCaloriesConsumed).
+The calculateCaloriesBurned function determines calories burned based on exercise type and duration.
+The calculateCaloriesConsumed function calculates total daily calories consumed from breakfast, lunch, and dinner.
+The suggestWorkoutPlan function suggests a workout plan based on the user's fitness level.
+In main(), sample input values are provided (exercise type, duration, calories consumed for each meal, fitness level).
+Results are calculated and displayed using function calls to calculate and output calories burned, calories consumed, and suggested workout plan.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Functions
+Declaring and invoking functions
+Side effects
+Different methods of passing parameters
+"""
