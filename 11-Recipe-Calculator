@@ -1,0 +1,71 @@
+// Recipe Calculator
+// This program allows users to input ingredients and quantities for a recipe,
+// calculates total amounts, and provides options for unit conversion.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to convert grams to ounces
+double gramsToOunces(double grams) {
+    return grams * 0.035274;
+}
+
+// Function to calculate total amount of an ingredient
+double calculateTotal(double quantity, string unit) {
+    double total = quantity;
+    
+    // Convert grams to ounces if unit is "g"
+    if (unit == "g") {
+        total = gramsToOunces(quantity);
+        cout << "Converted " << quantity << " grams to " << total << " ounces." << endl;
+    }
+    
+    return total;
+}
+
+int main() {
+    // Initialize variables
+    string ingredient;
+    double quantity;
+    string unit;
+
+    // Prompt user for ingredient name, quantity, and unit
+    cout << "Enter ingredient name: ";
+    getline(cin, ingredient);
+    cout << "Enter quantity: ";
+    cin >> quantity;
+    cout << "Enter unit (g, oz, ml, cups): ";
+    cin >> unit;
+
+    // Calculate total amount
+    double totalAmount = calculateTotal(quantity, unit);
+
+    // Display result
+    cout << "Total amount of " << ingredient << " needed: " << totalAmount << " " << unit << endl;
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program begins by prompting the user to input the name of the ingredient, its quantity, and the unit of measurement.
+It includes a function gramsToOunces to convert grams to ounces.
+The calculateTotal function calculates the total amount of an ingredient, optionally converting grams to ounces.
+Main function initializes variables for ingredient, quantity, and unit, then calculates and displays the total amount needed based on user input.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Functions: gramsToOunces, calculateTotal
+Declaring and invoking functions: gramsToOunces, calculateTotal
+Side effects: Printing conversion messages (cout statements)
+Different methods of passing parameters: Passing double and string parameters to functions
+Default parameters: Not explicitly used in this example
+Inline functions: Not used in this example
+Overloaded functions: Not used in this example
+"""
