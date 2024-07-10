@@ -1,0 +1,70 @@
+// Adventure Game with Error Handling
+// This program simulates a text-based adventure game where the player explores different scenarios.
+
+#include <iostream>
+#include <string>
+#include <stdexcept> // Required for exceptions
+
+using namespace std;
+
+// Custom exception class for handling invalid directions
+class InvalidDirectionException : public exception {
+public:
+    virtual const char* what() const throw() {
+        return "Invalid direction! Please enter north, south, east, or west.";
+    }
+};
+
+// Function to simulate player movement based on direction input
+void movePlayer(string direction) {
+    // Convert direction to lowercase for case-insensitive comparison
+    for (char &c : direction) {
+        c = tolower(c);
+    }
+
+    // Check valid directions and throw exception for invalid ones
+    if (direction != "north" && direction != "south" && direction != "east" && direction != "west") {
+        throw InvalidDirectionException();
+    }
+
+    // If direction is valid, simulate movement
+    cout << "Player moves " << direction << "." << endl;
+    // Additional logic for game scenarios could go here
+}
+
+int main() {
+    cout << "Welcome to the Adventure Game!" << endl;
+    cout << "Enter a direction (north, south, east, west) to move the player:" << endl;
+
+    string input;
+    cin >> input;
+
+    try {
+        movePlayer(input);
+    } catch (InvalidDirectionException &ex) {
+        cerr << "Error: " << ex.what() << endl;
+        // Handle the error gracefully, possibly allow the user to retry
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by greeting the player and prompting them to enter a direction (north, south, east, or west).
+It defines a custom exception class InvalidDirectionException derived from std::exception to handle invalid direction inputs.
+The movePlayer function takes a direction as input, converts it to lowercase for uniformity, checks if it's a valid direction (north, south, east, west), and throws InvalidDirectionException for any other input.
+In main, the player's input is read, and movePlayer is called within a try block to catch any exceptions thrown.
+If an InvalidDirectionException is caught, an error message is displayed indicating the invalid direction.
+"""
+
+
+"""
+NOTIONS COVERED
+
+What is an exception
+Catching and throwing exceptions
+Defining your own exceptions
+"""
