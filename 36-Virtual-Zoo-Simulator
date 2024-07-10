@@ -1,0 +1,107 @@
+// Virtual Zoo Simulator
+// Simulates a virtual zoo with different types of animals exhibiting polymorphic behavior.
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Base class for animals
+class Animal {
+public:
+    Animal(string name) : name(name) {}
+    
+    // Virtual method for making sound
+    virtual void makeSound() const {
+        cout << "Animal sound" << endl;
+    }
+    
+    // Virtual method for displaying information
+    virtual void displayInfo() const {
+        cout << "Animal: " << name << endl;
+    }
+    
+    // Virtual destructor (important for polymorphic behavior)
+    virtual ~Animal() {}
+    
+protected:
+    string name;
+};
+
+// Derived class for mammals
+class Mammal : public Animal {
+public:
+    Mammal(string name) : Animal(name) {}
+    
+    void makeSound() const override {
+        cout << "Mammal sound" << endl;
+    }
+};
+
+// Derived class for birds
+class Bird : public Animal {
+public:
+    Bird(string name) : Animal(name) {}
+    
+    void makeSound() const override {
+        cout << "Bird sound" << endl;
+    }
+};
+
+// Derived class for reptiles
+class Reptile : public Animal {
+public:
+    Reptile(string name) : Animal(name) {}
+    
+    void makeSound() const override {
+        cout << "Reptile sound" << endl;
+    }
+};
+
+int main() {
+    // Creating a vector of Animal pointers (polymorphism)
+    vector<Animal*> zoo;
+
+    // Adding different types of animals to the zoo
+    zoo.push_back(new Mammal("Lion"));
+    zoo.push_back(new Bird("Eagle"));
+    zoo.push_back(new Reptile("Snake"));
+
+    // Using polymorphism to interact with animals
+    for (const auto& animal : zoo) {
+        animal->displayInfo();
+        animal->makeSound();
+        cout << endl;
+    }
+
+    // Cleaning up memory (important when using pointers)
+    for (auto& animal : zoo) {
+        delete animal;
+    }
+    zoo.clear();
+
+    return 0;
+}
+
+
+
+"""
+EXPLANATION OF THE CODE
+
+The code simulates a virtual zoo with different types of animals.
+It defines a base class Animal with virtual methods for making sounds and displaying information.
+Derived classes (Mammal, Bird, Reptile) inherit from Animal and override the virtual methods with specific behaviors.
+In main(), a vector of Animal* pointers is used to store different types of animals.
+Polymorphism is demonstrated by calling virtual methods (makeSound() and displayInfo()) on each animal pointer.
+Memory management is handled by deallocating memory for each animal pointer at the end.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Polymorphism: Achieved through the use of virtual methods (makeSound() and displayInfo()).
+Virtual Methods: Used in the base class Animal and overridden in derived classes (Mammal, Bird, Reptile).
+Inheritance: Demonstrated by deriving specific animal types from the base class Animal.
+"""
