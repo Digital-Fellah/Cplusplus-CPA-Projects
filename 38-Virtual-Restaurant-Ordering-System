@@ -1,0 +1,103 @@
+// Virtual Restaurant Ordering System
+// Simulates a basic restaurant ordering system with polymorphism and abstraction.
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Abstract base class representing a food item
+class FoodItem {
+protected:
+    string name;
+    double price;
+public:
+    FoodItem(string n, double p) : name(n), price(p) {}
+    virtual void display() const = 0; // Virtual method for displaying food item details
+    virtual double calculateCost(int quantity) const = 0; // Virtual method for calculating cost based on quantity
+};
+
+// Derived class representing a specific food item (e.g., Burger)
+class Burger : public FoodItem {
+private:
+    string size;
+public:
+    Burger(string n, double p, string s) : FoodItem(n, p), size(s) {}
+
+    // Override display method to show burger details
+    void display() const override {
+        cout << name << " - Size: " << size << " - $" << price << " each";
+    }
+
+    // Override calculateCost method to calculate total cost
+    double calculateCost(int quantity) const override {
+        return price * quantity;
+    }
+};
+
+// Derived class representing another food item (e.g., Salad)
+class Salad : public FoodItem {
+private:
+    string dressing;
+public:
+    Salad(string n, double p, string d) : FoodItem(n, p), dressing(d) {}
+
+    // Override display method to show salad details
+    void display() const override {
+        cout << name << " - Dressing: " << dressing << " - $" << price << " each";
+    }
+
+    // Override calculateCost method to calculate total cost
+    double calculateCost(int quantity) const override {
+        return price * quantity;
+    }
+};
+
+// Function to display menu options
+void displayMenu(const vector<FoodItem*>& menu) {
+    cout << "Welcome to our Virtual Restaurant!" << endl;
+    cout << "Menu:" << endl;
+    for (const auto& item : menu) {
+        item->display();
+        cout << endl;
+    }
+}
+
+int main() {
+    // Create menu items
+    vector<FoodItem*> menu;
+    menu.push_back(new Burger("Classic Burger", 8.99, "Regular"));
+    menu.push_back(new Salad("Caesar Salad", 6.99, "Caesar"));
+
+    // Display menu
+    displayMenu(menu);
+
+    // Cleanup
+    for (auto item : menu) {
+        delete item;
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program defines an abstract base class FoodItem with virtual methods display() and calculateCost() to represent food items.
+Derived classes Burger and Salad inherit from FoodItem and implement their specific details and cost calculation methods.
+The displayMenu() function prints out the restaurant menu by calling the display() method for each item in the menu vector.
+The main() function initializes menu items, displays them using displayMenu(), and ensures proper memory cleanup after use.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Polymorphism: Achieved through virtual methods (display() and calculateCost()) in the FoodItem base class and their overrides in derived classes (Burger and Salad).
+Virtual Methods: Used in FoodItem class to provide a generic interface for displaying details and calculating costs, which are overridden in derived classes.
+Abstraction: Implemented via the abstract base class FoodItem, which defines interfaces (display() and calculateCost()) that must be implemented by derived classes (Burger and Salad).
+"""
+
+
