@@ -1,0 +1,85 @@
+// Pet Adoption Center Program
+// This program manages a virtual pet adoption center where users can adopt pets and manage their profiles.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Base class for animals
+class Animal {
+protected:
+    string name;
+    int age;
+    string species;
+public:
+    Animal(string _name, int _age, string _species) : name(_name), age(_age), species(_species) {}
+
+    // Virtual function to display information about the animal
+    virtual void displayInfo() {
+        cout << "Name: " << name << ", Age: " << age << ", Species: " << species << endl;
+    }
+};
+
+// Subclasses inheriting from Animal
+class Dog : public Animal {
+private:
+    string breed;
+public:
+    Dog(string _name, int _age, string _breed) : Animal(_name, _age, "Dog"), breed(_breed) {}
+
+    // Override displayInfo to include breed
+    void displayInfo() override {
+        cout << "Name: " << name << ", Age: " << age << ", Species: " << species << ", Breed: " << breed << endl;
+    }
+};
+
+class Cat : public Animal {
+private:
+    bool isNeutered;
+public:
+    Cat(string _name, int _age, bool _isNeutered) : Animal(_name, _age, "Cat"), isNeutered(_isNeutered) {}
+
+    // Override displayInfo to include neutered status
+    void displayInfo() override {
+        cout << "Name: " << name << ", Age: " << age << ", Species: " << species;
+        if (isNeutered)
+            cout << ", Neutered: Yes" << endl;
+        else
+            cout << ", Neutered: No" << endl;
+    }
+};
+
+int main() {
+    // Creating some sample pets
+    Dog dog1("Buddy", 3, "Labrador");
+    Cat cat1("Whiskers", 2, true);
+
+    // Displaying information about the pets
+    cout << "Available pets for adoption:" << endl;
+    cout << "-----------------------------" << endl;
+    dog1.displayInfo();
+    cat1.displayInfo();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Animal Class: Defines a base class for animals with attributes like name, age, and species.
+Dog Class: Inherits from Animal, adds a 'breed' attribute, and overrides the displayInfo function to include breed information.
+Cat Class: Inherits from Animal, adds a 'isNeutered' attribute, and overrides the displayInfo function to indicate neutered status if applicable.
+Main Function: Creates instances of Dog and Cat, displays their information using the displayInfo function.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class hierarchy: Demonstrated through the Animal base class and its subclasses Dog and Cat.
+Base class, superclass, subclass: Animal is the base class, Dog and Cat are subclasses inheriting from Animal.
+Inheritance: Dog and Cat inherit attributes and behaviors (such as displayInfo) from the Animal class.
+"""
