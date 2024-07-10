@@ -1,0 +1,75 @@
+// Smart Home Controller Simulation
+// This program simulates a smart home controller with different devices.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Class representing a smart device in the home
+class Device {
+private:
+    string name;        // Name of the device
+    bool isOn;          // Status of the device (on/off)
+
+public:
+    // Constructor to initialize device name and status
+    Device(string deviceName) {
+        name = deviceName;
+        isOn = false;   // Devices start off
+    }
+
+    // Method to turn the device on
+    void turnOn() {
+        isOn = true;
+        cout << name << " is now turned on.\n";
+    }
+
+    // Method to turn the device off
+    void turnOff() {
+        isOn = false;
+        cout << name << " is now turned off.\n";
+    }
+
+    // Method to check if the device is currently on
+    bool isDeviceOn() {
+        return isOn;
+    }
+};
+
+int main() {
+    // Creating instances of different devices
+    Device light("Living Room Light");
+    Device ac("Air Conditioner");
+    Device alarm("Security Alarm");
+
+    // Turning on some devices
+    light.turnOn();
+    ac.turnOn();
+
+    // Turning off a device
+    alarm.turnOff();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program simulates a smart home controller with devices like lights, an air conditioner, and a security alarm.
+Each device is represented by the Device class, which has attributes for the device name (name) and its status (isOn).
+The constructor (Device(string deviceName)) initializes each device with a name and sets its initial status (isOn is false by default).
+Methods like turnOn() and turnOff() are used to change the status of the devices.
+The main() function initializes instances of the Device class for different devices, turns some devices on, and turns one device off.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+static members
+"""
