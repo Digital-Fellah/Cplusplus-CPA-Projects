@@ -1,0 +1,144 @@
+// This program simulates a superhero battle arena where different superheroes fight each other.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Abstract base class for Superheroes
+class Superhero {
+protected:
+    string name;
+    int health;
+
+public:
+    Superhero(const string& name) : name(name), health(100) {}
+
+    // Virtual method for attacking another superhero
+    virtual void attack(Superhero* target) = 0;
+
+    // Virtual method for defending against attacks
+    virtual void defend() = 0;
+
+    // Virtual method to display superhero information
+    virtual void displayInfo() const = 0;
+
+    // Method to check if the superhero is still alive
+    bool isAlive() const {
+        return health > 0;
+    }
+
+    // Method to get the superhero's name
+    string getName() const {
+        return name;
+    }
+
+    // Method to decrease health when attacked
+    void takeDamage(int damage) {
+        health -= damage;
+        if (health < 0) {
+            health = 0;
+        }
+    }
+};
+
+// Derived class for Superheroes with flying ability
+class FlyingSuperhero : public Superhero {
+public:
+    FlyingSuperhero(const string& name) : Superhero(name) {}
+
+    // Override attack method specific to flying superheroes
+    void attack(Superhero* target) override {
+        cout << name << " attacks " << target->getName() << " with flying kick!" << endl;
+        target->takeDamage(20);
+    }
+
+    // Override defend method specific to flying superheroes
+    void defend() override {
+        cout << name << " defends with super speed!" << endl;
+    }
+
+    // Override displayInfo method specific to flying superheroes
+    void displayInfo() const override {
+        cout << "Flying Superhero: " << name << ", Health: " << health << endl;
+    }
+};
+
+// Derived class for Superheroes with super strength
+class StrengthSuperhero : public Superhero {
+public:
+    StrengthSuperhero(const string& name) : Superhero(name) {}
+
+    // Override attack method specific to superheroes with super strength
+    void attack(Superhero* target) override {
+        cout << name << " smashes " << target->getName() << " with super strength!" << endl;
+        target->takeDamage(25);
+    }
+
+    // Override defend method specific to superheroes with super strength
+    void defend() override {
+        cout << name << " defends with invincible armor!" << endl;
+    }
+
+    // Override displayInfo method specific to superheroes with super strength
+    void displayInfo() const override {
+        cout << "Strength Superhero: " << name << ", Health: " << health << endl;
+    }
+};
+
+int main() {
+    // Create instances of superheroes
+    FlyingSuperhero superman("Superman");
+    StrengthSuperhero hulk("Hulk");
+
+    // Vector to store pointers to Superhero objects
+    vector<Superhero*> superheroes;
+    superheroes.push_back(&superman);
+    superheroes.push_back(&hulk);
+
+    // Battle simulation
+    while (superman.isAlive() && hulk.isAlive()) {
+        // Superheroes attack each other alternately
+        for (auto& hero : superheroes) {
+            if (superman.isAlive() && hulk.isAlive()) {
+                hero->attack((hero == &superman) ? &hulk : &superman);
+            }
+        }
+
+        // Display superheroes' health after each round
+        cout << endl;
+        superman.displayInfo();
+        hulk.displayInfo();
+        cout << endl;
+    }
+
+    // Determine the winner based on who is still alive
+    if (superman.isAlive()) {
+        cout << "Superman wins!" << endl;
+    } else {
+        cout << "Hulk wins!" << endl;
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Introduction: This program simulates a battle arena where superheroes with different powers fight each other.
+Superhero Class: Abstract base class defining common attributes and behaviors for all superheroes.
+FlyingSuperhero Class: Derived class for superheroes with flying abilities, overrides attack, defend, and displayInfo methods.
+StrengthSuperhero Class: Derived class for superheroes with super strength, overrides attack, defend, and displayInfo methods.
+Main Function: Creates instances of FlyingSuperhero and StrengthSuperhero, simulates a battle between them using polymorphism, and determines the winner based on health.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Polymorphism: Different types of superheroes (FlyingSuperhero and StrengthSuperhero) inheriting from the same base class (Superhero) and using overridden methods (attack, defend, displayInfo).
+Virtual methods: attack, defend, and displayInfo methods declared as virtual in the base class (Superhero) and overridden in the derived classes (FlyingSuperhero and StrengthSuperhero).
+Abstraction: The Superhero class is an abstract base class with pure virtual methods (attack, defend, displayInfo), ensuring that all derived classes provide their own implementations.
+"""
