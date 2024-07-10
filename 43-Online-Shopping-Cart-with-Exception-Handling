@@ -1,0 +1,116 @@
+// Online Shopping Cart with Exception Handling
+// This program simulates an online shopping cart with exception handling for various scenarios.
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+// Define custom exception classes
+class DuplicateItemException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Error: Item already exists in the cart.";
+    }
+};
+
+class OutOfStockException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Error: Item is out of stock.";
+    }
+};
+
+// Define a basic product class
+class Product {
+private:
+    std::string name;
+    int quantity;
+public:
+    Product(std::string name, int quantity) : name(name), quantity(quantity) {}
+
+    std::string getName() const {
+        return name;
+    }
+
+    int getQuantity() const {
+        return quantity;
+    }
+
+    void decreaseQuantity() {
+        quantity--;
+    }
+};
+
+// Define the shopping cart class
+class ShoppingCart {
+private:
+    std::vector<Product> cart;
+
+public:
+    void addItem(const Product& item) {
+        // Check if item already exists in the cart
+        for (const auto& prod : cart) {
+            if (prod.getName() == item.getName()) {
+                throw DuplicateItemException();
+            }
+        }
+        // Check if item is in stock
+        if (item.getQuantity() <= 0) {
+            throw OutOfStockException();
+        }
+        // Add item to cart
+        cart.push_back(item);
+        // Decrease quantity of the added item
+        item.decreaseQuantity();
+    }
+
+    void displayCart() const {
+        std::cout << "Shopping Cart:" << std::endl;
+        for (const auto& prod : cart) {
+            std::cout << "- " << prod.getName() << std::endl;
+        }
+    }
+};
+
+int main() {
+    ShoppingCart cart;
+
+    try {
+        Product p1("Shirt", 5);
+        Product p2("Pants", 3);
+        Product p3("Shirt", 2); // This should throw DuplicateItemException
+
+        cart.addItem(p1);
+        cart.addItem(p2);
+        cart.addItem(p3);
+
+        cart.displayCart();
+    } catch (const DuplicateItemException& e) {
+        std::cerr << "Error adding item to cart: " << e.what() << std::endl;
+    } catch (const OutOfStockException& e) {
+        std::cerr << "Error adding item to cart: " << e.what() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Custom Exception Classes: Defined DuplicateItemException and OutOfStockException to handle specific errors related to adding items to the shopping cart.
+Product Class: Represents a product with attributes name and quantity. Includes methods to retrieve the name, quantity, and decrease the quantity.
+ShoppingCart Class: Manages the shopping cart using a vector of Product objects. Implements addItem to add products to the cart with checks for duplicates and availability, and displayCart to show the current contents of the cart.
+Main Function: Creates a ShoppingCart object, attempts to add three Product instances (p1, p2, p3) to the cart. Catches exceptions thrown during addItem and prints appropriate error messages.
+"""
+
+
+"""
+NOTIONS COVERED
+
+What is an exception
+Catching and throwing exceptions
+Different classes and hierarchy of exceptions
+"""
