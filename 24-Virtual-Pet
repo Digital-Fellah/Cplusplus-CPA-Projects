@@ -1,0 +1,88 @@
+// Virtual Pet Simulation
+// Simulates a virtual pet that the user can interact with by feeding, playing, and checking its status.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Pet class definition
+class Pet {
+private:
+    string name;
+    int hunger;
+    int happiness;
+
+public:
+    // Constructor to initialize name, hunger, and happiness
+    Pet(string n) {
+        name = n;
+        hunger = 50;    // Start with moderate hunger level
+        happiness = 50; // Start with moderate happiness level
+    }
+
+    // Method to feed the pet
+    void feed() {
+        hunger -= 10;   // Decrease hunger level when fed
+        if (hunger < 0) hunger = 0; // Ensure hunger doesn't go below 0
+        happiness += 5; // Increase happiness slightly when fed
+        if (happiness > 100) happiness = 100; // Ensure happiness doesn't exceed 100
+    }
+
+    // Method to play with the pet
+    void play() {
+        happiness += 10;    // Increase happiness when played with
+        if (happiness > 100) happiness = 100; // Ensure happiness doesn't exceed 100
+        hunger += 5;    // Playing increases hunger slightly
+        if (hunger > 100) hunger = 100; // Ensure hunger doesn't exceed 100
+    }
+
+    // Method to display the pet's current status
+    void status() {
+        cout << "Pet: " << name << endl;
+        cout << "Hunger: " << hunger << endl;
+        cout << "Happiness: " << happiness << endl;
+    }
+};
+
+int main() {
+    // Create a virtual pet object named "Fluffy"
+    Pet fluffy("Fluffy");
+
+    // Display initial status of the pet
+    fluffy.status();
+
+    // Simulate feeding the pet
+    fluffy.feed();
+    cout << "You fed " << fluffy.name << "." << endl;
+    fluffy.status();
+
+    // Simulate playing with the pet
+    fluffy.play();
+    cout << "You played with " << fluffy.name << "." << endl;
+    fluffy.status();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Define a Pet class with private data members name, hunger, and happiness.
+Implement a constructor to initialize these attributes when a Pet object is created.
+Include methods feed() and play() to modify the pet's hunger and happiness levels based on user interactions.
+Implement a status() method to display the current state of the pet.
+In main(), create an instance of Pet named "Fluffy".
+Interact with the pet by feeding it and playing with it, displaying the updated status after each interaction.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+referring to objects
+"""
