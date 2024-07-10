@@ -1,0 +1,97 @@
+// File Backup Tool
+// This program allows users to back up directories to a specified destination
+
+#include <iostream>
+#include <filesystem> // for directory_iterator, path, exists, create_directories
+#include <fstream>    // for ifstream, ofstream
+#include <stdexcept>  // for runtime_error
+
+namespace fs = std::filesystem;
+
+// Function to copy a file from source to destination
+void copyFile(const fs::path& source, const fs::path& destination) {
+    std::ifstream src(source, std::ios::binary);
+    std::ofstream dest(destination, std::ios::binary);
+
+    dest << src.rdbuf(); // Copy file content
+
+    // Check if the copy operation was successful
+    if (!dest) {
+        throw std::runtime_error("Failed to copy file: " + source.string());
+    }
+}
+
+// Function to recursively copy a directory
+void copyDirectory(const fs::path& sourceDir, const fs::path& destinationDir) {
+    // Check if source directory exists
+    if (!fs::exists(sourceDir) || !fs::is_directory(sourceDir)) {
+        throw std::runtime_error("Source directory does not exist or is not a directory: " + sourceDir.string());
+    }
+
+    // Create destination directory if it doesn't exist
+    if (!fs::exists(destinationDir)) {
+        fs::create_directories(destinationDir);
+    }
+
+    // Iterate through each file/directory in the source directory
+    for (const auto& entry : fs::directory_iterator(sourceDir)) {
+        const auto& path = entry.path();
+        const auto& filename = path.filename();
+
+        // Construct the destination path for the current item
+        fs::path destinationPath = destinationDir / filename;
+
+        // If the current item is a directory, recursively copy it
+        if (fs::is_directory(path)) {
+            copyDirectory(path, destinationPath);
+        }
+        // If it's a regular file, copy it
+        else if (fs::is_regular_file(path)) {
+            copyFile(path, destinationPath);
+        }
+    }
+}
+
+int main() {
+    try {
+        // Prompt user for source and destination directories
+        std::cout << "Enter source directory path: ";
+        fs::path sourceDir;
+        std::cin >> sourceDir;
+
+        std::cout << "Enter destination directory path: ";
+        fs::path destinationDir;
+        std::cin >> destinationDir;
+
+        // Perform the backup operation
+        copyDirectory(sourceDir, destinationDir);
+
+        std::cout << "Backup completed successfully.\n";
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << "\n";
+        return 1; // Return error status
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by including necessary libraries and defining namespaces.
+Two functions (copyFile and copyDirectory) are defined to handle file and directory copying operations.
+copyFile function copies a single file from a source path to a destination path using binary file streams.
+copyDirectory function recursively copies a directory and its contents to a destination directory. It handles both directories and regular files.
+In main function, the user is prompted to enter source and destination directory paths.
+The program attempts to perform the backup operation using copyDirectory.
+Exceptions are caught using a try-catch block to handle errors gracefully and print meaningful error messages.
+"""
+
+
+"""
+NOTIONS COVERED
+
+What is an exception
+Catching and throwing exceptions
+"""
