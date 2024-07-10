@@ -1,0 +1,75 @@
+// Superhero Character Creator
+// This program allows users to create their own superhero characters.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Base class for Superheroes
+class Superhero {
+protected:
+    string name;
+    string costumeColor;
+public:
+    // Constructor to initialize name and costume color
+    Superhero(const string& name, const string& color) : name(name), costumeColor(color) {}
+
+    // Virtual function to display superhero details
+    virtual void displayDetails() {
+        cout << "Name: " << name << ", Costume Color: " << costumeColor << endl;
+    }
+};
+
+// Subclass for Flying Superheroes
+class FlyingSuperhero : public Superhero {
+private:
+    int flightSpeed;  // Additional attribute for flying superheroes
+public:
+    // Constructor to initialize name, costume color, and flight speed
+    FlyingSuperhero(const string& name, const string& color, int speed)
+        : Superhero(name, color), flightSpeed(speed) {}
+
+    // Override displayDetails to include flight speed
+    void displayDetails() override {
+        cout << "Flying Superhero - ";
+        Superhero::displayDetails();
+        cout << "Flight Speed: " << flightSpeed << " mph" << endl;
+    }
+};
+
+int main() {
+    // Creating instances of superheroes
+    Superhero hero1("Captain Marvel", "Red and Blue");
+    FlyingSuperhero hero2("Superman", "Blue and Red", 500);
+
+    // Displaying details of superheroes
+    cout << "Superhero 1 Details:" << endl;
+    hero1.displayDetails();
+
+    cout << "\nSuperhero 2 Details:" << endl;
+    hero2.displayDetails();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program begins with including necessary libraries and namespaces.
+Two classes are defined: Superhero as the base class and FlyingSuperhero as a subclass inheriting from Superhero.
+The Superhero class has attributes name and costumeColor, and a method displayDetails() to print these attributes.
+FlyingSuperhero adds an additional attribute flightSpeed and overrides displayDetails() to include flightSpeed.
+In main(), instances of Superhero and FlyingSuperhero are created and their details are displayed using displayDetails().
+"""
+
+"""
+NOTIONS COVERED
+
+Class hierarchy
+Base class
+Subclass
+Inheritance
+Virtual functions
+"""
