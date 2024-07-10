@@ -1,0 +1,91 @@
+// Restaurant Ordering System
+// This program allows users to place and manage orders for a restaurant.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Base class for dishes
+class Dish {
+protected:
+    string name;
+    float price;
+
+public:
+    Dish(string n, float p) : name(n), price(p) {}
+
+    string getName() const { return name; }
+
+    virtual float getPrice() const { return price; }
+
+    // Virtual function to display details of the dish
+    virtual void display() const {
+        cout << name << " - $" << price << endl;
+    }
+};
+
+// Subclass for main courses (inherits from Dish)
+class MainCourse : public Dish {
+private:
+    string protein; // Example additional attribute
+
+public:
+    MainCourse(string n, float p, string pro) : Dish(n, p), protein(pro) {}
+
+    void display() const override {
+        cout << name << " (" << protein << ") - $" << price << endl;
+    }
+};
+
+// Function to display menu and take orders
+void displayMenu(const vector<Dish*>& menu) {
+    cout << "Menu:\n";
+    for (const auto dish : menu) {
+        dish->display();
+    }
+}
+
+int main() {
+    // Create menu items
+    vector<Dish*> menu;
+    menu.push_back(new Dish("Caesar Salad", 8.99));
+    menu.push_back(new MainCourse("Spaghetti Bolognese", 12.99, "Beef"));
+
+    // Display menu
+    displayMenu(menu);
+
+    // Clean up dynamic memory
+    for (auto dish : menu) {
+        delete dish;
+    }
+    menu.clear();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Defines a base class Dish with attributes name and price.
+Includes a constructor for initializing name and price.
+Provides a virtual function getPrice() to retrieve the price of the dish.
+Implements a virtual function display() to print details of the dish.
+Defines a subclass MainCourse inheriting from Dish, adding an attribute protein.
+Overrides the display() function in MainCourse to include protein information.
+Implements a displayMenu() function to print out the menu items.
+In the main() function, creates instances of Dish and MainCourse, adds them to the menu vector, and displays the menu items.
+Deletes dynamically allocated memory to avoid memory leaks.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class hierarchy
+Base class
+Subclass
+Virtual functions
+"""
