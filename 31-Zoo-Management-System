@@ -1,0 +1,95 @@
+// Zoo Management System
+// This program manages a zoo with different types of animals categorized into base, superclass, and subclass levels.
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Base class: Animal
+class Animal {
+protected:
+    string name;
+    int age;
+
+public:
+    Animal(string name, int age) : name(name), age(age) {}
+
+    // Virtual function for displaying animal information
+    virtual void displayInfo() {
+        cout << "Name: " << name << ", Age: " << age;
+    }
+};
+
+// Superclass: Mammal (inherits from Animal)
+class Mammal : public Animal {
+protected:
+    string type;  // e.g., carnivore, herbivore
+
+public:
+    Mammal(string name, int age, string type) : Animal(name, age), type(type) {}
+
+    // Override displayInfo to include type
+    void displayInfo() override {
+        Animal::displayInfo();
+        cout << ", Type: " << type;
+    }
+};
+
+// Subclass: Lion (inherits from Mammal)
+class Lion : public Mammal {
+private:
+    string sound;  // e.g., roar
+
+public:
+    Lion(string name, int age, string type, string sound) : Mammal(name, age, type), sound(sound) {}
+
+    // Override displayInfo to include sound
+    void displayInfo() override {
+        Mammal::displayInfo();
+        cout << ", Sound: " << sound << endl;
+    }
+};
+
+int main() {
+    // Create instances of animals
+    Lion lion1("Simba", 5, "carnivore", "roar");
+    Lion lion2("Nala", 4, "carnivore", "roar");
+
+    // Store animals in a vector of pointers to Animal objects
+    vector<Animal*> zoo;
+    zoo.push_back(&lion1);
+    zoo.push_back(&lion2);
+
+    // Display information for all animals in the zoo
+    cout << "Zoo Animals:\n";
+    for (auto animal : zoo) {
+        animal->displayInfo();
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program defines a Zoo Management System using C++ classes.
+It includes a base class Animal and subclasses Mammal and Lion.
+The Animal class holds common attributes like name and age.
+The Mammal class inherits from Animal and adds a type attribute.
+The Lion class inherits from Mammal and adds a sound attribute.
+Instances of lions are created and stored in a vector.
+Information about each animal is displayed using polymorphism.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class hierarchy: Demonstrated through Animal, Mammal, and Lion classes.
+Base class: Animal serves as the base for Mammal and Lion.
+Superclass, subclass: Mammal is a superclass to Lion, demonstrating inheritance levels.
+Inheritance: Inherited attributes and methods from base to superclass to subclass.
+"""
