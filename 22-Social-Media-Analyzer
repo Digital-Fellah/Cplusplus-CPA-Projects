@@ -1,0 +1,71 @@
+// Social Media Analyzer
+// This program analyzes social media data including user profiles and interactions.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Define a class for representing a social media user
+class User {
+public:
+    string username;
+    int numPosts;
+    int numFollowers;
+
+    // Constructor to initialize user attributes
+    User(string uname) {
+        username = uname;
+        numPosts = 0;
+        numFollowers = 0;
+    }
+
+    // Method to display user information
+    void displayInfo() {
+        cout << "Username: " << username << endl;
+        cout << "Number of posts: " << numPosts << endl;
+        cout << "Number of followers: " << numFollowers << endl;
+    }
+};
+
+int main() {
+    // Create a vector to store user objects
+    vector<User> users;
+
+    // Add some users to the vector
+    users.push_back(User("Alice"));
+    users.push_back(User("Bob"));
+    users.push_back(User("Charlie"));
+
+    // Display information for each user
+    for (const auto& user : users) {
+        user.displayInfo();
+        cout << endl;
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Header Comment: Provides a brief description of what the program does.
+Class Definition (User): Defines a class User with attributes username, numPosts, and numFollowers.
+Constructor (User(string uname)): Initializes a user object with a given username.
+Method (displayInfo()): Displays the user's username, number of posts, and number of followers.
+Main Function:
+Vector Creation: Creates a vector users to store User objects.
+Object Creation: Creates instances of User and adds them to the users vector.
+Display Loop: Iterates through the users vector and displays each user's information using the displayInfo() method.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+"""
