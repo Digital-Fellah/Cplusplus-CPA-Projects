@@ -1,0 +1,72 @@
+// Virtual Music Player
+// This program simulates a basic music player with support for different audio formats.
+
+#include <iostream>
+#include <string>
+
+// Abstract base class representing a generic media file
+class MediaFile {
+public:
+    // Virtual method to play the media file
+    virtual void play() const = 0;
+};
+
+// Derived class for MP3 files
+class MP3File : public MediaFile {
+public:
+    void play() const override {
+        std::cout << "Playing MP3 file..." << std::endl;
+        // Code to play MP3 file
+    }
+};
+
+// Derived class for WAV files
+class WAVFile : public MediaFile {
+public:
+    void play() const override {
+        std::cout << "Playing WAV file..." << std::endl;
+        // Code to play WAV file
+    }
+};
+
+// Derived class for FLAC files
+class FLACFile : public MediaFile {
+public:
+    void play() const override {
+        std::cout << "Playing FLAC file..." << std::endl;
+        // Code to play FLAC file
+    }
+};
+
+// Main function to demonstrate the virtual music player
+int main() {
+    // Instantiate different media files
+    MP3File mp3;
+    WAVFile wav;
+    FLACFile flac;
+
+    // Play each type of media file
+    mp3.play();
+    wav.play();
+    flac.play();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program defines an abstract base class MediaFile with a pure virtual method play() to simulate playing different types of media files.
+Three derived classes (MP3File, WAVFile, FLACFile) inherit from MediaFile and override the play() method with specific implementations for MP3, WAV, and FLAC files.
+In the main() function, instances of each file type are created (mp3, wav, flac) and their play() methods are called to demonstrate polymorphism.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Polymorphism: Different file types (MP3File, WAVFile, FLACFile) inherit from a common base class (MediaFile) and override a virtual method (play()).
+Virtual Methods: The play() method in the base class is declared as virtual and overridden in derived classes to provide specific behavior for each media type.
+Abstraction: The MediaFile class is abstract with a pure virtual method (play()), ensuring that all derived classes provide their own implementation.
+"""
