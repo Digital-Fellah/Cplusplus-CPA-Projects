@@ -1,0 +1,143 @@
+// Recipe Manager Program
+// This program allows users to manage recipes, including adding, editing, and deleting recipes,
+// while handling errors using C++ exceptions.
+
+#include <iostream>
+#include <vector>
+#include <stdexcept>  // Standard library for exceptions
+
+using namespace std;
+
+// Define a custom exception for invalid recipe operations
+class RecipeException : public runtime_error {
+public:
+    RecipeException(const string& message) : runtime_error(message) {}
+};
+
+// Define a class for a Recipe
+class Recipe {
+private:
+    string name;
+    vector<string> ingredients;
+    string instructions;
+
+public:
+    // Constructor to initialize a recipe
+    Recipe(const string& name, const vector<string>& ingredients, const string& instructions)
+        : name(name), ingredients(ingredients), instructions(instructions) {}
+
+    // Method to display recipe details
+    void display() const {
+        cout << "Recipe Name: " << name << endl;
+        cout << "Ingredients: ";
+        for (const auto& ingredient : ingredients) {
+            cout << ingredient << ", ";
+        }
+        cout << endl << "Instructions: " << instructions << endl;
+    }
+};
+
+// Recipe Manager class to manage multiple recipes
+class RecipeManager {
+private:
+    vector<Recipe> recipes;
+
+public:
+    // Method to add a new recipe
+    void addRecipe(const Recipe& recipe) {
+        recipes.push_back(recipe);
+    }
+
+    // Method to find a recipe by name
+    Recipe& findRecipe(const string& name) {
+        for (auto& recipe : recipes) {
+            if (recipeNameMatch(recipe, name)) {
+                return recipe;
+            }
+        }
+        // Throw an exception if recipe not found
+        throw RecipeException("Recipe not found.");
+    }
+
+    // Method to delete a recipe by name
+    void deleteRecipe(const string& name) {
+        auto it = recipes.begin();
+        while (it != recipes.end()) {
+            if (recipeNameMatch(*it, name)) {
+                it = recipes.erase(it);  // Erase recipe if found
+                return;
+            } else {
+                ++it;
+            }
+        }
+        // Throw an exception if recipe not found
+        throw RecipeException("Recipe not found.");
+    }
+
+    // Method to display all recipes
+    void displayAllRecipes() const {
+        if (recipes.empty()) {
+            cout << "No recipes found." << endl;
+        } else {
+            cout << "All Recipes:" << endl;
+            for (const auto& recipe : recipes) {
+                recipe.display();
+                cout << endl;
+            }
+        }
+    }
+
+private:
+    // Helper function to check if recipe name matches
+    bool recipeNameMatch(const Recipe& recipe, const string& name) {
+        return recipe.name == name;
+    }
+};
+
+// Main function to test the RecipeManager class
+int main() {
+    RecipeManager manager;
+
+    // Add some sample recipes
+    Recipe recipe1("Spaghetti Carbonara", {"spaghetti", "bacon", "eggs", "parmesan cheese"}, "Cook spaghetti; mix with eggs, bacon, and cheese.");
+    Recipe recipe2("Chocolate Cake", {"flour", "sugar", "cocoa powder", "butter"}, "Mix all ingredients; bake at 180°C for 30 minutes.");
+
+    manager.addRecipe(recipe1);
+    manager.addRecipe(recipe2);
+
+    // Test findRecipe method
+    try {
+        Recipe& foundRecipe = manager.findRecipe("Spaghetti Carbonara");
+        foundRecipe.display();
+    } catch (const RecipeException& e) {
+        cerr << "Error: " << e.what() << endl;
+    }
+
+    // Test deleteRecipe method
+    try {
+        manager.deleteRecipe("Chocolate Cake");
+        manager.displayAllRecipes();
+    } catch (const RecipeException& e) {
+        cerr << "Error: " << e.what() << endl;
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program defines a Recipe class to encapsulate recipe details such as name, ingredients, and instructions.
+A RecipeManager class is implemented to manage multiple recipes using vector storage.
+Methods in RecipeManager allow adding, finding, and deleting recipes, each employing exception handling to manage errors.
+Custom exceptions are defined to handle cases where recipes are not found.
+"""
+
+
+"""
+NOTIONS COVERED
+
+What is an exception
+Catching and throwing exceptions
+"""
