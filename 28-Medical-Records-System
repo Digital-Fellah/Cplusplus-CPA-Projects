@@ -1,0 +1,80 @@
+// Medical Records System
+// Simulates a basic medical records management system where patients and their medical histories are stored.
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Class representing a Patient
+class Patient {
+private:
+    string name;
+    int age;
+    string gender;
+    vector<string> medicalHistory; // Vector to store medical history
+
+public:
+    // Constructor to initialize patient attributes
+    Patient(string n, int a, string g) : name(n), age(a), gender(g) {}
+
+    // Method to add an entry to the patient's medical history
+    void addMedicalRecord(string record) {
+        medicalHistory.push_back(record);
+    }
+
+    // Method to display patient information and medical history
+    void displayDetails() {
+        cout << "Patient Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Gender: " << gender << endl;
+        cout << "Medical History:" << endl;
+        for (const auto& record : medicalHistory) {
+            cout << "- " << record << endl;
+        }
+    }
+};
+
+int main() {
+    // Creating instances of Patient class
+    Patient p1("John Doe", 35, "Male");
+    Patient p2("Jane Smith", 28, "Female");
+
+    // Adding medical records for patients
+    p1.addMedicalRecord("2022-01-01: Routine check-up, all parameters normal.");
+    p1.addMedicalRecord("2022-05-15: Influenza symptoms, prescribed medication.");
+
+    p2.addMedicalRecord("2023-03-10: Annual physical examination, results pending.");
+    p2.addMedicalRecord("2023-07-20: Allergy symptoms, advised allergy testing.");
+
+    // Displaying patient details and medical history
+    cout << "Patient 1 Details:" << endl;
+    p1.displayDetails();
+    cout << endl;
+
+    cout << "Patient 2 Details:" << endl;
+    p2.displayDetails();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Created a Patient class to store information about patients and manage their medical histories.
+Implemented constructors to initialize patient attributes such as name, age, and gender.
+Utilized a vector to store medical history entries for each patient.
+Methods included adding medical records to a patient's history and displaying patient details along with their medical history.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+class components
+"""
