@@ -1,0 +1,76 @@
+// Smart Converter
+// This program allows users to convert values between different units of measurement.
+
+#include <iostream>
+#include <string>
+#include <stdexcept> // For handling exceptions
+
+using namespace std;
+
+// Function to convert temperature from Celsius to Fahrenheit
+double celsiusToFahrenheit(double celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+
+// Function to convert temperature from Fahrenheit to Celsius
+double fahrenheitToCelsius(double fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+
+int main() {
+    cout << "Welcome to the Smart Converter!" << endl;
+    cout << "---------------------------------" << endl;
+    cout << "Select an option:" << endl;
+    cout << "1. Celsius to Fahrenheit" << endl;
+    cout << "2. Fahrenheit to Celsius" << endl;
+
+    int choice;
+    cin >> choice;
+
+    double input, result;
+    string fromUnit, toUnit;
+
+    switch (choice) {
+        case 1:
+            cout << "Enter Celsius temperature: ";
+            cin >> input;
+            result = celsiusToFahrenheit(input);
+            fromUnit = "Celsius";
+            toUnit = "Fahrenheit";
+            break;
+        case 2:
+            cout << "Enter Fahrenheit temperature: ";
+            cin >> input;
+            result = fahrenheitToCelsius(input);
+            fromUnit = "Fahrenheit";
+            toUnit = "Celsius";
+            break;
+        default:
+            cerr << "Invalid choice. Please select 1 or 2." << endl;
+            return 1;
+    }
+
+    cout << input << " " << fromUnit << " is equal to " << result << " " << toUnit << endl;
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by greeting the user and displaying conversion options for Celsius to Fahrenheit and Fahrenheit to Celsius.
+It prompts the user to choose an option and reads the input.
+Based on the user's choice, it calls either celsiusToFahrenheit or fahrenheitToCelsius functions to perform the conversion.
+It handles user input and displays the converted temperature with appropriate units.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Converting values of different types (double for temperature conversion)
+Strings: declarations, initializations, assignments (used for unit labels)
+String as an example of an object: introducing methods and properties (manipulating strings for unit labels)
+Dealing with exceptions (basic error handling for invalid user input)
+"""
