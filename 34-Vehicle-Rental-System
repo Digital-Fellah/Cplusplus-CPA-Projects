@@ -1,0 +1,99 @@
+// This program simulates a vehicle rental system where users can rent different types of vehicles.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Base class Vehicle
+class Vehicle {
+protected:
+    string make;
+    string model;
+    int year;
+
+public:
+    // Constructor
+    Vehicle(string make, string model, int year) : make(make), model(model), year(year) {}
+
+    // Method to display vehicle details
+    void displayInfo() {
+        cout << "Make: " << make << ", Model: " << model << ", Year: " << year << endl;
+    }
+};
+
+// Subclass Car inheriting from Vehicle
+class Car : public Vehicle {
+private:
+    int numDoors;
+
+public:
+    // Constructor
+    Car(string make, string model, int year, int numDoors) : Vehicle(make, model, year), numDoors(numDoors) {}
+
+    // Method to display car details, overriding the base class method
+    void displayInfo() {
+        cout << "Car - ";
+        Vehicle::displayInfo();  // Call base class method
+        cout << "Number of doors: " << numDoors << endl;
+    }
+};
+
+// Subclass Motorcycle inheriting from Vehicle
+class Motorcycle : public Vehicle {
+private:
+    string type;
+
+public:
+    // Constructor
+    Motorcycle(string make, string model, int year, string type) : Vehicle(make, model, year), type(type) {}
+
+    // Method to display motorcycle details, overriding the base class method
+    void displayInfo() {
+        cout << "Motorcycle - ";
+        Vehicle::displayInfo();  // Call base class method
+        cout << "Type: " << type << endl;
+    }
+};
+
+int main() {
+    // Create instances of vehicles
+    Car car1("Toyota", "Camry", 2020, 4);
+    Motorcycle moto1("Honda", "CBR600RR", 2021, "Sport");
+
+    // Store vehicles in a vector
+    vector<Vehicle*> vehicles;
+    vehicles.push_back(&car1);
+    vehicles.push_back(&moto1);
+
+    // Display information for each vehicle using polymorphism
+    for (auto vehicle : vehicles) {
+        vehicle->displayInfo();
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by defining a vehicle rental system using C++ classes.
+It defines a base class Vehicle with attributes make, model, and year.
+Two subclasses (Car and Motorcycle) inherit from Vehicle and add specific attributes (numDoors for Car and type for Motorcycle).
+Each subclass has a method displayInfo() that overrides the method in the base class to display vehicle details specific to that type.
+In the main() function, instances of Car and Motorcycle are created and stored in a vector of pointers to Vehicle.
+Using polymorphism, the program iterates through the vector and calls the displayInfo() method for each vehicle, demonstrating runtime polymorphism.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Class hierarchy
+Base class (Vehicle)
+Subclasses (Car, Motorcycle)
+Inheritance (Car and Motorcycle inherit from Vehicle)
+Polymorphism (achieved through the displayInfo() method overridden in subclasses)
+"""
