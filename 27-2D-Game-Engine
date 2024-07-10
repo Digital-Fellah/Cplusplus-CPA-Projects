@@ -1,0 +1,77 @@
+// 2D Game Engine Simulation
+// This program simulates a simple 2D game engine with basic entity interaction.
+
+#include <iostream>
+
+// Define a class for a basic game entity
+class Entity {
+private:
+    int x, y;  // Position of the entity
+
+public:
+    Entity(int x, int y) : x(x), y(y) {}  // Constructor to initialize position
+
+    // Method to move the entity
+    void move(int dx, int dy) {
+        x += dx;
+        y += dy;
+    }
+
+    // Overload the '+' operator to combine two entities' positions
+    Entity operator+(const Entity& other) {
+        return Entity(x + other.x, y + other.y);
+    }
+
+    // Method to display entity's current position
+    void displayPosition() {
+        std::cout << "Current position: (" << x << ", " << y << ")" << std::endl;
+    }
+};
+
+int main() {
+    // Create two entities
+    Entity entity1(0, 0);
+    Entity entity2(5, 5);
+
+    // Display initial positions
+    std::cout << "Entity 1 ";
+    entity1.displayPosition();
+    std::cout << "Entity 2 ";
+    entity2.displayPosition();
+
+    // Move entity 1
+    entity1.move(2, 3);
+
+    // Display new position of entity 1
+    std::cout << "Entity 1 after movement ";
+    entity1.displayPosition();
+
+    // Combine positions of entity 1 and entity 2 using operator overloading
+    Entity combined = entity1 + entity2;
+
+    // Display combined position
+    std::cout << "Combined position of Entity 1 and Entity 2 ";
+    combined.displayPosition();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Define a class Entity with private members x and y representing its position.
+Constructor Entity(int x, int y) initializes the position of each entity.
+Method move(int dx, int dy) allows entities to move by adjusting their position.
+Operator overloading (operator+) enables addition of two Entity objects to combine their positions.
+displayPosition() method prints the current position of an entity.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+defining and overloading operators
+"""
