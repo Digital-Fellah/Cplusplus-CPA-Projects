@@ -1,0 +1,82 @@
+// Weather Station Simulation
+// Simulates a weather station that collects and displays weather data.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Class to represent a Weather Station
+class WeatherStation {
+private:
+    static int totalReadings;  // Static member to track total readings
+    string location;           // Location of the weather station
+    float temperature;         // Current temperature reading
+    float humidity;            // Current humidity reading
+
+public:
+    // Constructor to initialize the weather station
+    WeatherStation(string loc, float temp, float hum) {
+        location = loc;
+        temperature = temp;
+        humidity = hum;
+        totalReadings++;  // Increment total readings each time a station is created
+    }
+
+    // Function to display weather information
+    void displayWeather() {
+        cout << "Weather at " << location << ":" << endl;
+        cout << "Temperature: " << temperature << " C" << endl;
+        cout << "Humidity: " << humidity << "%" << endl;
+    }
+
+    // Static function to get total readings
+    static int getTotalReadings() {
+        return totalReadings;
+    }
+};
+
+// Initialize static member outside the class definition
+int WeatherStation::totalReadings = 0;
+
+int main() {
+    // Create two instances of WeatherStation
+    WeatherStation station1("New York", 25.5, 60.0);
+    WeatherStation station2("Los Angeles", 30.0, 55.5);
+
+    // Display weather information for each station
+    station1.displayWeather();
+    station2.displayWeather();
+
+    // Display total number of readings
+    cout << "Total readings taken: " << WeatherStation::getTotalReadings() << endl;
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+WeatherStation Class:
+Defines a class WeatherStation with private members location, temperature, and humidity.
+Includes a static member totalReadings to count how many weather stations have been created.
+Provides a constructor to initialize the WeatherStation object with location, temperature, and humidity.
+displayWeather() method prints out the current weather information (temperature and humidity) for a specific location.
+getTotalReadings() is a static method that returns the total number of weather stations created.
+Main Function:
+Creates two instances of WeatherStation (station1 and station2) with different locations and weather conditions.
+Calls the displayWeather() method for each station to show their respective weather information.
+Calls getTotalReadings() to display the total number of weather station instances created.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+static members
+"""
+
