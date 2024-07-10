@@ -1,0 +1,87 @@
+// Flight Booking System
+// This program simulates a simple flight booking system where users can book seats on flights.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Class representing a Flight
+class Flight {
+private:
+    string flightNumber;
+    int totalSeats;
+    int bookedSeats;
+
+public:
+    // Constructor to initialize flight details
+    Flight(string number, int seats) {
+        flightNumber = number;
+        totalSeats = seats;
+        bookedSeats = 0; // Initially no seats booked
+    }
+
+    // Method to book a seat on the flight
+    bool bookSeat() {
+        if (bookedSeats < totalSeats) {
+            bookedSeats++;
+            cout << "Seat booked successfully!\n";
+            return true;
+        } else {
+            cout << "Sorry, no seats available.\n";
+            return false;
+        }
+    }
+
+    // Method to display flight information
+    void display() {
+        cout << "Flight Number: " << flightNumber << endl;
+        cout << "Total Seats: " << totalSeats << endl;
+        cout << "Booked Seats: " << bookedSeats << endl;
+    }
+};
+
+int main() {
+    // Create a flight object with flight number and total seats
+    Flight flight1("AI202", 100);
+
+    // Display flight information before booking
+    cout << "Flight Details:\n";
+    flight1.display();
+
+    // Book a seat on the flight
+    flight1.bookSeat();
+
+    // Display flight information after booking
+    cout << "Flight Details after booking:\n";
+    flight1.display();
+
+    return 0;
+}
+
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by defining a class Flight which represents a flight with attributes such as flightNumber, totalSeats, and bookedSeats.
+The constructor Flight(string number, int seats) initializes these attributes when a Flight object is created.
+The method bool bookSeat() allows booking a seat on the flight if seats are available.
+The method void display() displays the current flight information.
+In the main() function:
+A Flight object flight1 is created with flight number "AI202" and total seats 100.
+The current flight details are displayed using flight1.display().
+A seat is booked using flight1.bookSeat().
+The updated flight details are displayed again to show the change in booked seats.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+referring to objects
+"""
