@@ -1,7 +1,7 @@
 C++ Institute CPA Syllabus
 
 
-Absolute basics:
+ABSOLUTE BASICS:
 
 machine and high-level programming languages, compilation process
 
@@ -19,7 +19,7 @@ dealing with streams and basic input/output operations
 
 
 
-Flow control and more data types:
+FLOW CONTROL AND MORE DATA TYPES:
 
 how to control the flow of the program
 
@@ -33,7 +33,7 @@ logic, bitwise and arithmetic operators
 
 
 
-Functions:
+FUNCTIONS:
 
 functions
 
@@ -51,7 +51,7 @@ overloaded functions
 
 
 
-Accessing data and dealing with exceptions:
+ACCESSING DATA AND DEALING WITH EXCEPTIONS:
 
 converting values of different types
 
@@ -65,7 +65,7 @@ dealing with exceptions
 
 
 
-Fundamentals of the object-oriented approach:
+FUNDAMENTALS OF THE OBJECT-ORIENTED APPROACH:
 
 class
 
@@ -85,7 +85,7 @@ defining and overloading operators
 
 
 
-Class hierarchy:
+CLASS HIERARCHY:
 
 base class, superclass, subclass
 
@@ -99,7 +99,7 @@ multiple inheritance
 
 
 
-More on classes:
+MORE ON CLASSES:
 
 polymorphism: the notion and the purpose
 
@@ -111,7 +111,7 @@ abstraction and abstract classes
 
 
 
-Exceptions - dealing with expected and unexpected problems:
+EXCEPTIONS - DEALING WITH EXPECTED AND UNEXPECTED PROBLEMS:
 
 what is an exception
 
