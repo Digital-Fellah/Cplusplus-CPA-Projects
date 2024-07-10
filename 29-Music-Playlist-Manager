@@ -1,0 +1,134 @@
+// Music Playlist Manager
+// This program allows users to manage their music playlists.
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Class representing a song
+class Song {
+private:
+    string title;
+    string artist;
+public:
+    // Constructor to initialize song title and artist
+    Song(string t, string a) {
+        title = t;
+        artist = a;
+    }
+
+    // Getter method to retrieve song title
+    string getTitle() const {
+        return title;
+    }
+
+    // Getter method to retrieve song artist
+    string getArtist() const {
+        return artist;
+    }
+
+    // Overloading the '==' operator to compare songs
+    bool operator==(const Song& other) const {
+        return (title == other.title && artist == other.artist);
+    }
+};
+
+// Class representing a playlist
+class Playlist {
+private:
+    string name;
+    vector<Song> songs; // Vector to store songs in the playlist
+public:
+    // Constructor to initialize playlist name
+    Playlist(string n) {
+        name = n;
+    }
+
+    // Method to add a song to the playlist
+    void addSong(const Song& song) {
+        // Check if the song already exists in the playlist
+        for (const Song& s : songs) {
+            if (s == song) {
+                cout << "Song '" << song.getTitle() << "' by " << song.getArtist() << " already exists in the playlist." << endl;
+                return;
+            }
+        }
+        // If the song does not exist, add it to the playlist
+        songs.push_back(song);
+        cout << "Added song '" << song.getTitle() << "' by " << song.getArtist() << " to the playlist '" << name << "'." << endl;
+    }
+
+    // Method to remove a song from the playlist
+    void removeSong(const Song& song) {
+        // Check if the song exists in the playlist
+        for (auto it = songs.begin(); it != songs.end(); ++it) {
+            if (*it == song) {
+                songs.erase(it);
+                cout << "Removed song '" << song.getTitle() << "' by " << song.getArtist() << " from the playlist '" << name << "'." << endl;
+                return;
+            }
+        }
+        // If the song is not found
+        cout << "Song '" << song.getTitle() << "' by " << song.getArtist() << " does not exist in the playlist '" << name << "'." << endl;
+    }
+
+    // Method to display all songs in the playlist
+    void displayPlaylist() const {
+        cout << "Playlist: " << name << endl;
+        cout << "-----------------" << endl;
+        for (const Song& song : songs) {
+            cout << song.getTitle() << " - " << song.getArtist() << endl;
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    // Create a playlist named "My Favorites"
+    Playlist myFavorites("My Favorites");
+
+    // Create some songs
+    Song song1("Shape of You", "Ed Sheeran");
+    Song song2("Believer", "Imagine Dragons");
+    Song song3("Someone Like You", "Adele");
+
+    // Add songs to the playlist
+    myFavorites.addSong(song1);
+    myFavorites.addSong(song2);
+    myFavorites.addSong(song3);
+    myFavorites.addSong(song2); // Adding duplicate song
+
+    // Display the playlist
+    myFavorites.displayPlaylist();
+
+    // Remove a song from the playlist
+    myFavorites.removeSong(song2);
+
+    // Display the playlist again
+    myFavorites.displayPlaylist();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program starts by defining two classes: Song and Playlist. Song class represents individual songs with attributes like title and artist. Playlist class represents a collection of songs with methods to add, remove, and display songs.
+In main(), a playlist named "My Favorites" is created, and several songs are added to it using the addSong() method.
+The program demonstrates handling duplicate song additions and removal of songs using the removeSong() method.
+Finally, the playlist is displayed before and after removing a song.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+referring to objects
+defining and overloading operators
+"""
