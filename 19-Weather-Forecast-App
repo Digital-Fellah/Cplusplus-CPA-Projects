@@ -1,0 +1,60 @@
+// This Weather Forecast App fetches and displays the weather for a user-specified city.
+// It demonstrates string handling and exception handling in C++.
+
+#include <iostream>
+#include <string>
+#include <stdexcept>
+
+// Function to simulate fetching weather data for a city
+std::string getWeatherData(const std::string& city) {
+    if (city.empty()) {
+        // Throw an exception if the city name is empty
+        throw std::invalid_argument("City name cannot be empty.");
+    }
+
+    // Simulating weather data retrieval
+    // In a real application, you would fetch this from an API
+    return "Sunny, 25°C";
+}
+
+int main() {
+    std::string city;
+
+    // Prompt user to enter a city name
+    std::cout << "Enter city name: ";
+    std::getline(std::cin, city);
+
+    try {
+        // Fetch and display weather data for the specified city
+        std::string weather = getWeatherData(city);
+        std::cout << "Weather in " << city << ": " << weather << std::endl;
+    } catch (const std::exception& e) {
+        // Catch and display any exceptions that occur
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Include necessary headers: The code starts by including the necessary headers for input/output operations and string handling.
+Function definition (getWeatherData): A function is defined to simulate fetching weather data for a given city.
+Exception handling: If the city name is empty, the function throws an std::invalid_argument exception.
+Return simulated data: The function returns a hardcoded weather data string.
+Main function: The main function is the entry point of the program.
+Prompt for user input: It prompts the user to enter a city name and stores the input in a string.
+Fetch weather data: It calls the getWeatherData function to fetch the weather data for the specified city.
+Handle exceptions: If an exception occurs, it is caught and the error message is displayed.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Strings: declarations, initializations, assignments: Strings are used for city names and weather data.
+String as an example of an object: introducing methods and properties: String methods such as .empty() and .getline() are used.
+Dealing with exceptions: Exceptions are thrown and caught to handle invalid inputs and other errors.
+"""
