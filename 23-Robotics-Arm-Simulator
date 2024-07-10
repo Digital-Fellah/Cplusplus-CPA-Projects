@@ -1,0 +1,71 @@
+// Robotics Arm Simulator
+// This program simulates the movement of a robotic arm with multiple joints.
+
+#include <iostream>
+
+// Define a class for joints in the robotic arm
+class Joint {
+private:
+    double angle;  // Angle of the joint in degrees
+
+public:
+    // Constructor to initialize the joint angle
+    Joint(double initial_angle) {
+        angle = initial_angle;
+    }
+
+    // Method to get the current angle of the joint
+    double getAngle() const {
+        return angle;
+    }
+
+    // Overload the '+' operator to increment the joint angle
+    Joint operator+(double increment) {
+        angle += increment;
+        return *this;
+    }
+};
+
+int main() {
+    // Create instances of joints for a robotic arm with 3 segments
+    Joint base(0.0);    // Base joint
+    Joint elbow(0.0);   // Elbow joint
+    Joint wrist(0.0);   // Wrist joint
+
+    // Simulate the movement of the robotic arm
+    base = base + 45.0;     // Rotate the base joint by 45 degrees
+    elbow = elbow + 30.0;   // Rotate the elbow joint by 30 degrees
+    wrist = wrist + 15.0;   // Rotate the wrist joint by 15 degrees
+
+    // Output the final angles of each joint
+    std::cout << "Final angles:" << std::endl;
+    std::cout << "Base: " << base.getAngle() << " degrees" << std::endl;
+    std::cout << "Elbow: " << elbow.getAngle() << " degrees" << std::endl;
+    std::cout << "Wrist: " << wrist.getAngle() << " degrees" << std::endl;
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Define a class Joint to represent each joint in the robotic arm.
+The class has a private member angle to store the current angle of the joint.
+Constructor Joint(double initial_angle) initializes the joint with a given angle.
+Method getAngle() retrieves the current angle of the joint.
+Operator overloading Joint operator+(double increment) allows incrementing the angle of the joint using the + operator.
+In the main() function:
+Three instances of Joint (base, elbow, wrist) are created to simulate the robotic arm.
+Each joint is rotated by a specified angle using the overloaded + operator.
+Final angles of all joints are printed to the console.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+defining and overloading operators
+"""
