@@ -1,0 +1,92 @@
+// This program simulates a simple command-line music player with error handling using custom exceptions.
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <stdexcept> // Required for standard exceptions
+
+// Custom exception class for handling playlist-related errors
+class PlaylistException : public std::exception {
+private:
+    std::string message;
+
+public:
+    PlaylistException(const std::string& msg) : message(msg) {}
+
+    // Override the what() method to provide error message
+    const char* what() const noexcept override {
+        return message.c_str();
+    }
+};
+
+// Function to simulate playing a song (in real application, this could play an actual audio file)
+void playSong(const std::string& song) {
+    std::cout << "Playing: " << song << std::endl;
+    // Simulate playing the song
+}
+
+// Function to load playlist from a file
+std::vector<std::string> loadPlaylist(const std::string& filename) {
+    std::vector<std::string> playlist;
+    std::ifstream file(filename);
+
+    if (!file.is_open()) {
+        throw PlaylistException("Error: Unable to open playlist file.");
+    }
+
+    std::string song;
+    while (std::getline(file, song)) {
+        // Remove trailing newline character if present
+        if (!song.empty() && song[song.length() - 1] == '\n') {
+            song.erase(song.length() - 1);
+        }
+        playlist.push_back(song);
+    }
+
+    file.close();
+    return playlist;
+}
+
+int main() {
+    // Attempt to load playlist and handle exceptions
+    try {
+        std::vector<std::string> playlist = loadPlaylist("playlist.txt");
+
+        // Play each song in the playlist
+        for (const auto& song : playlist) {
+            playSong(song);
+        }
+    } catch (const PlaylistException& e) {
+        std::cerr << e.what() << std::endl;
+        return 1; // Exit with error code 1
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1; // Exit with error code 1
+    }
+
+    return 0; // Exit successfully
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Header Comments: Provides a brief introduction to what the program does.
+Include Statements: Includes necessary standard library headers.
+PlaylistException Class: Defines a custom exception class derived from std::exception to handle playlist-related errors.
+playSong Function: Simulates playing a song (placeholder for actual audio playback).
+loadPlaylist Function: Loads a playlist from a file specified by filename. Throws a PlaylistException if the file cannot be opened.
+Main Function:
+Attempts to load the playlist file "playlist.txt".
+Iterates through each song in the playlist and calls playSong.
+Catches and handles PlaylistException and other standard exceptions, printing error messages to stderr.
+"""
+
+
+"""
+NOTIONS COVERED
+
+What is an exception
+Catching and throwing exceptions
+Defining your own exceptions
+"""
