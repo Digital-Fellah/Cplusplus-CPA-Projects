@@ -1,0 +1,88 @@
+// Superhero Name Generator
+// Generates superhero names based on user preferences.
+
+#include <iostream>
+#include <string>
+
+// Namespace declaration for animal-themed names
+namespace AnimalTheme {
+    std::string getName(std::string userInput) {
+        return userInput + " Panther";
+    }
+}
+
+// Namespace declaration for color-themed names
+namespace ColorTheme {
+    std::string getName(std::string userInput) {
+        return "Crimson " + userInput;
+    }
+}
+
+int main() {
+    // Introduction message to the user
+    std::cout << "Welcome to the Superhero Name Generator!" << std::endl;
+    std::cout << "Let's create your superhero name based on your preferences." << std::endl;
+
+    // Declare variables for user input and superhero name
+    std::string favoriteAnimal, favoriteColor, superheroName;
+    int choice;
+
+    // Prompt user to choose a theme
+    std::cout << "Choose a theme: (1) Animal (2) Color: ";
+    std::cin >> choice;
+
+    // Handle the user's theme choice
+    try {
+        if (choice == 1) {
+            // Animal theme chosen
+            std::cout << "Enter your favorite animal: ";
+            std::cin >> favoriteAnimal;
+            // Generate superhero name using the AnimalTheme namespace
+            superheroName = AnimalTheme::getName(favoriteAnimal);
+        } else if (choice == 2) {
+            // Color theme chosen
+            std::cout << "Enter your favorite color: ";
+            std::cin >> favoriteColor;
+            // Generate superhero name using the ColorTheme namespace
+            superheroName = ColorTheme::getName(favoriteColor);
+        } else {
+            // Invalid choice exception handling
+            throw std::invalid_argument("Invalid choice! Please select either 1 or 2.");
+        }
+
+        // Display the generated superhero name
+        std::cout << "Your superhero name is: " << superheroName << std::endl;
+    }
+    // Catch exceptions for invalid user input
+    catch (const std::invalid_argument &e) {
+        std::cerr << e.what() << std::endl;
+    }
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The code starts with comments to describe the purpose of the program.
+Included the necessary header for input-output and string manipulation.
+Declared two namespaces, AnimalTheme and ColorTheme, each containing a function to generate a superhero name based on the user's input.
+The main function begins with welcoming the user and explaining the process.
+Declared variables for user input and the superhero name.
+Prompted the user to choose between two themes (Animal or Color).
+Used try and catch to handle exceptions when the user inputs an invalid choice.
+Based on the user's choice, generated the superhero name using the corresponding namespace function.
+Displayed the generated superhero name.
+Handled invalid choices by catching exceptions and displaying an error message.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Strings: declarations, initializations, assignments
+String as an example of an object: introducing methods and properties
+Namespaces: using and declaring
+Dealing with exceptions
+"""
