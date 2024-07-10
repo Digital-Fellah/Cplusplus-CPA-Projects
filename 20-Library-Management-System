@@ -1,0 +1,149 @@
+// Library Management System
+// A simple console-based application to manage books in a library
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <exception>
+
+using namespace std;
+
+// Define a class for Books
+class Book {
+public:
+    // Properties of the Book class
+    string title;
+    string author;
+    bool isBorrowed;
+
+    // Constructor to initialize book properties
+    Book(string t, string a) : title(t), author(a), isBorrowed(false) {}
+
+    // Method to display book information
+    void displayInfo() {
+        cout << "Title: " << title << ", Author: " << author << ", " 
+             << (isBorrowed ? "Borrowed" : "Available") << endl;
+    }
+};
+
+// Exception for when a book is not found
+class BookNotFoundException : public exception {
+    virtual const char* what() const throw() {
+        return "Book not found";
+    }
+};
+
+// Library class to manage the collection of books
+class Library {
+private:
+    vector<Book> books;  // Vector to store the collection of books
+
+public:
+    // Method to add a book to the library
+    void addBook(string title, string author) {
+        books.push_back(Book(title, author));
+    }
+
+    // Method to search for a book by title
+    Book& findBook(string title) {
+        for (Book& book : books) {
+            if (book.title == title) {
+                return book;
+            }
+        }
+        // If the book is not found, throw an exception
+        throw BookNotFoundException();
+    }
+
+    // Method to borrow a book
+    void borrowBook(string title) {
+        try {
+            Book& book = findBook(title);
+            if (book.isBorrowed) {
+                cout << "The book is already borrowed." << endl;
+            } else {
+                book.isBorrowed = true;
+                cout << "You borrowed \"" << book.title << "\"." << endl;
+            }
+        } catch (BookNotFoundException& e) {
+            cout << e.what() << endl;
+        }
+    }
+
+    // Method to return a borrowed book
+    void returnBook(string title) {
+        try {
+            Book& book = findBook(title);
+            if (book.isBorrowed) {
+                book.isBorrowed = false;
+                cout << "You returned \"" << book.title << "\"." << endl;
+            } else {
+                cout << "The book was not borrowed." << endl;
+            }
+        } catch (BookNotFoundException& e) {
+            cout << e.what() << endl;
+        }
+    }
+
+    // Method to display all books in the library
+    void displayBooks() {
+        for (Book& book : books) {
+            book.displayInfo();
+        }
+    }
+};
+
+int main() {
+    Library myLibrary;
+
+    // Adding some books to the library
+    myLibrary.addBook("The Great Gatsby", "F. Scott Fitzgerald");
+    myLibrary.addBook("To Kill a Mockingbird", "Harper Lee");
+
+    // Displaying all books
+    myLibrary.displayBooks();
+
+    // Borrowing a book
+    myLibrary.borrowBook("The Great Gatsby");
+
+    // Trying to borrow a book that is already borrowed
+    myLibrary.borrowBook("The Great Gatsby");
+
+    // Returning a book
+    myLibrary.returnBook("The Great Gatsby");
+
+    // Trying to return a book that was not borrowed
+    myLibrary.returnBook("To Kill a Mockingbird");
+
+    // Searching for a book that does not exist
+    myLibrary.borrowBook("1984");
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+Include necessary libraries and use the std namespace.
+Define the Book class with properties for title, author, and borrow status.
+Define a constructor for the Book class to initialize properties.
+Create a method displayInfo in the Book class to display book details.
+Define an exception class BookNotFoundException for handling book not found errors.
+Define the Library class with a vector to store books.
+Create a method addBook to add books to the library.
+Create a method findBook to search for a book by title and throw an exception if not found.
+Create a method borrowBook to mark a book as borrowed and handle exceptions.
+Create a method returnBook to mark a book as returned and handle exceptions.
+Create a method displayBooks to show all books in the library.
+In the main function, instantiate the Library class, add books, and perform borrow/return operations.
+"""
+
+
+"""
+NOTIONS COVERED
+
+Strings: declarations, initializations, assignments
+String as an example of an object: introducing methods and properties
+Dealing with exceptions
+"""
