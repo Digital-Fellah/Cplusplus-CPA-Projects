@@ -1,0 +1,82 @@
+// Online Bookstore Management System
+// This program simulates the backend operations of an online bookstore.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Define a class for representing a Book
+class Book {
+private:
+    string title;
+    string author;
+    double price;
+    int stock;
+
+public:
+    // Constructor to initialize the Book object
+    Book(string t, string a, double p, int s) : title(t), author(a), price(p), stock(s) {}
+
+    // Method to display book details
+    void display() {
+        cout << "Title: " << title << endl;
+        cout << "Author: " << author << endl;
+        cout << "Price: $" << price << endl;
+        cout << "Stock: " << stock << " copies available" << endl;
+        cout << endl;
+    }
+
+    // Method to update stock quantity
+    void updateStock(int newStock) {
+        stock = newStock;
+    }
+};
+
+// Main function to demonstrate bookstore operations
+int main() {
+    // Create instances of Book objects
+    Book book1("The Great Gatsby", "F. Scott Fitzgerald", 12.5, 50);
+    Book book2("To Kill a Mockingbird", "Harper Lee", 10.75, 35);
+
+    // Display details of the books
+    cout << "Book 1 Details:" << endl;
+    book1.display();
+
+    cout << "Book 2 Details:" << endl;
+    book2.display();
+
+    // Update stock for book1
+    book1.updateStock(40);
+
+    // Display updated stock
+    cout << "Updated Stock for Book 1:" << endl;
+    book1.display();
+
+    return 0;
+}
+
+
+"""
+EXPLANATION OF THE CODE
+
+The program begins by including necessary libraries and declaring the Book class.
+Inside the Book class, private attributes such as title, author, price, and stock are defined.
+A constructor Book(string t, string a, double p, int s) initializes these attributes when a Book object is created.
+The display() method prints out the details of a book, including title, author, price, and stock.
+The updateStock(int newStock) method allows updating the stock quantity of a book.
+In the main() function:
+Two instances of Book objects (book1 and book2) are created with different initial values.
+Details of each book are displayed using the display() method.
+The stock of book1 is updated using the updateStock() method, and the updated details are displayed again.
+"""
+
+
+"""
+NOTIONS COVERED
+
+class
+objects
+constructors
+"""
